@@ -1,0 +1,4481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Asian Networkers Convention & Expo 2025</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #ff6600;
+      --primary-light: #ff8533;
+      --primary-dark: #e65c00;
+      --secondary: #00d4ff;
+      --secondary-light: #33ddff;
+      --accent: #ffd700;
+      --dark: #0a0a0a;
+      --darker: #000;
+      --light: #ffffff;
+      --text-light: #f8f9fa;
+      --text-muted: rgba(255, 255, 255, 0.8);
+      --glass: rgba(15, 15, 15, 0.75);
+      --glass-light: rgba(255, 255, 255, 0.12);
+      --glass-border: rgba(255, 255, 255, 0.15);
+      --blur: blur(16px);
+      --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.15);
+      --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.25);
+      --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.35);
+      --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      --gradient-glow: linear-gradient(135deg, rgba(255,102,0,0.1) 0%, rgba(0,212,255,0.1) 100%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--dark);
+      color: var(--light);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* ---------- BACKGROUND ---------- */
+    .bg-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .bg-image {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: url('images/pic1.jpg') center/cover no-repeat;
+      filter: brightness(0.7);
+      animation: zoomInOut 30s infinite alternate ease-in-out;
+    }
+
+    .bg-overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 50%, rgba(255,102,0,0.1) 100%);
+    }
+
+    .bg-particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(2px 2px at 20px 30px, rgba(255,102,0,0.3), transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(0,212,255,0.3), transparent),
+        radial-gradient(1px 1px at 90px 40px, rgba(255,215,0,0.3), transparent);
+      background-repeat: repeat;
+      background-size: 120px 120px;
+      animation: float 20s infinite linear;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px) translateX(0px); }
+      25% { transform: translateY(-10px) translateX(5px); }
+      50% { transform: translateY(0px) translateX(-5px); }
+      75% { transform: translateY(10px) translateX(5px); }
+      100% { transform: translateY(0px) translateX(0px); }
+    }
+
+    @keyframes zoomInOut {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.05); }
+    }
+
+    /* ---------- LOADER ---------- */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: var(--darker);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.6s ease;
+    }
+
+    #loader img {
+      height: 100px;
+      margin-bottom: 30px;
+      filter: drop-shadow(0 0 20px var(--primary));
+      animation: pulse 2s infinite, rotate 4s linear infinite;
+    }
+
+    #loaderBarWrap {
+      width: 300px;
+      height: 6px;
+      background: #1a1a1a;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    #loaderBar {
+      width: 0;
+      height: 100%;
+      background: var(--primary);
+      transition: width 0.3s;
+    }
+
+    #loaderText {
+      margin-top: 15px;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--primary);
+      animation: fadeInOut 1.5s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0.7; }
+      100% { opacity: 1; }
+    }
+
+    /* ---------- MODAL STYLES ---------- */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-content {
+      background: var(--dark);
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--primary);
+      position: relative;
+      animation: modalFadeIn 0.3s ease-out;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 1.5rem;
+      color: var(--light);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .close-modal:hover {
+      color: var(--primary);
+      transform: rotate(90deg);
+    }
+
+    .modal h2 {
+      color: var(--primary);
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
+
+    .modal p {
+      margin-bottom: 20px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* ---------- FORM STYLES ---------- */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--light);
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      color: var(--light);
+      font-family: 'Montserrat', sans-serif;
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .radio-group {
+      margin-bottom: 15px;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .radio-option input[type="radio"] {
+      margin-right: 10px;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .radio-option input[type="radio"]:checked {
+      border-color: var(--primary);
+    }
+
+    .radio-option input[type="radio"]:checked::before {
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: var(--primary);
+      border-radius: 50%;
+      top: 2px;
+      left: 2px;
+    }
+
+    .radio-option label {
+      color: rgba(255, 255, 255, 0.8);
+      cursor: pointer;
+    }
+
+    .checkbox-option {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .checkbox-option input[type="checkbox"] {
+      margin-right: 10px;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      border-radius: 4px;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .checkbox-option input[type="checkbox"]:checked {
+      border-color: var(--primary);
+      background: var(--primary);
+    }
+
+    .checkbox-option input[type="checkbox"]:checked::before {
+      content: '\f00c';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      color: var(--light);
+      font-size: 12px;
+      top: 1px;
+      left: 2px;
+    }
+
+    .checkbox-option label {
+      color: rgba(255, 255, 255, 0.8);
+      cursor: pointer;
+    }
+
+    .form-submit {
+      background: var(--gradient-primary);
+      color: var(--light);
+      border: none;
+      padding: 18px 40px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      width: 100%;
+      margin-top: 25px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-submit::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: var(--transition);
+    }
+
+    .form-submit:hover::before {
+      left: 100%;
+    }
+
+    .form-submit:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg), 0 0 25px rgba(255, 102, 0, 0.4);
+    }
+
+    .btn, .form-submit {
+      box-shadow: 0 4px 16px rgba(255,102,0,0.18);
+      border: 2px solid var(--primary-dark);
+      letter-spacing: 0.5px;
+    }
+    .btn:active, .form-submit:active {
+      transform: scale(0.98);
+      box-shadow: 0 2px 8px rgba(255,102,0,0.12);
+    }
+
+    /* ---------- TICKET STYLES ---------- */
+    .ticket-option {
+      background: var(--glass);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 15px;
+      border: 1px solid var(--glass-light);
+      transition: var(--transition);
+    }
+
+    .ticket-option:hover {
+      border-color: var(--primary);
+    }
+
+    .ticket-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .ticket-name {
+      font-size: 1.2rem;
+      color: var(--light);
+      font-weight: 600;
+    }
+
+    .ticket-price {
+      font-size: 1.3rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .ticket-description {
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 15px;
+      font-size: 0.95rem;
+    }
+
+    .ticket-quantity {
+      display: flex;
+      align-items: center;
+    }
+
+    .ticket-quantity label {
+      margin-right: 10px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .ticket-quantity input {
+      width: 60px;
+      padding: 8px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 5px;
+      color: var(--light);
+    }
+
+    /* ---------- VOTING STYLES ---------- */
+    .vote-category {
+      background: var(--glass);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid var(--glass-light);
+      transition: var(--transition);
+    }
+
+    .vote-category:hover {
+      border-color: var(--primary);
+    }
+
+    #voteAgreementSection {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 2px solid var(--glass-border);
+      position: relative;
+    }
+
+    #voteAgreementSection::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 2px;
+      background: var(--primary);
+    }
+
+    .category-title {
+      font-size: 1.2rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .vote-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+    }
+
+    .vote-option {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 12px;
+      border-radius: 8px;
+      transition: var(--transition);
+    }
+
+    .vote-option:hover {
+      background: rgba(255, 102, 0, 0.1);
+    }
+
+    .vote-option input[type="radio"] {
+      margin-right: 8px;
+    }
+
+    .vote-success {
+      display: none;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .vote-success i {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+      animation: bounce 1s;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-20px); }
+      60% { transform: translateY(-10px); }
+    }
+
+    /* ---------- NAVIGATION ---------- */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 25px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: var(--glass);
+      backdrop-filter: var(--blur);
+      border-bottom: 1px solid var(--glass-border);
+      box-shadow: var(--shadow-sm);
+      transform: translateY(-100%);
+      animation: slideDown 0.8s forwards 1.5s;
+      transition: var(--transition);
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    .nav-toggle span {
+      width: 25px;
+      height: 3px;
+      background: var(--light);
+      margin: 3px 0;
+      transition: var(--transition);
+      border-radius: 2px;
+    }
+
+    .nav-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .nav-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
+    }
+
+    @keyframes slideDown {
+      to { transform: translateY(0); }
+    }
+
+    .nav-logo {
+      height: 50px;
+      filter: drop-shadow(0 0 10px var(--primary));
+      transition: var(--transition);
+    }
+
+    .nav-logo:hover {
+      transform: rotate(5deg) scale(1.05);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      transition: var(--transition);
+    }
+
+    .nav-links.mobile {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 300px;
+      height: 100vh;
+      background: var(--glass);
+      backdrop-filter: var(--blur);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      transition: var(--transition);
+      border-left: 1px solid var(--glass-border);
+    }
+
+    .nav-links.mobile.active {
+      right: 0;
+    }
+
+    .nav-links a {
+      color: var(--light);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      position: relative;
+      transition: var(--transition);
+      padding: 10px 15px;
+      border-radius: 8px;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+      background: var(--glass-light);
+      transform: translateY(-2px);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      background: var(--primary);
+      color: var(--light);
+      padding: 12px 25px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: var(--transition);
+      animation: pulseGlow 2s infinite;
+    }
+
+    .nav-cta:hover {
+      background: var(--light);
+      color: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(255, 102, 0, 0.3);
+      animation: none;
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 0 0 rgba(255, 102, 0, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(255, 102, 0, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 102, 0, 0); }
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      animation: fadeUp 1s ease-out both;
+      padding-top: 100px;
+    }
+
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo {
+      width: 180px;
+      margin-bottom: 30px;
+      filter: drop-shadow(0 0 15px var(--primary));
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      color: var(--light);
+      margin-bottom: 20px;
+      line-height: 1.2;
+      font-weight: 800;
+    }
+
+    .hero-content h1 span {
+      background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: inline-block;
+      animation: gradientShift 3s ease-in-out infinite, textGlow 2s infinite alternate;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes textGlow {
+      from { 
+        filter: drop-shadow(0 0 10px rgba(255, 102, 0, 0.5));
+      }
+      to { 
+        filter: drop-shadow(0 0 20px rgba(255, 102, 0, 0.8)) drop-shadow(0 0 30px rgba(0, 212, 255, 0.3));
+      }
+    }
+
+    .hero-content p {
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.6;
+      margin-bottom: 40px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btnWrap {
+      margin-top: 2.5rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .btn {
+      position: relative;
+      padding: 25px 80px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--light);
+      background: var(--gradient-primary);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      overflow: hidden;
+      transition: var(--transition);
+      box-shadow: var(--shadow-md), 0 0 0 1px rgba(255, 102, 0, 0.2);
+      z-index: 1;
+      animation: pulseScale 1.5s infinite;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .btn .btn-icon {
+      display: inline-block;
+      margin-right: 15px;
+      transition: transform 0.3s ease;
+      animation: shake 2s infinite;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-3px); }
+      75% { transform: translateX(3px); }
+    }
+
+    @keyframes pulseScale {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, var(--secondary), var(--primary), var(--accent));
+      background-size: 200% 200%;
+      z-index: -1;
+      opacity: 0;
+      transition: var(--transition);
+      animation: gradientShift 3s ease-in-out infinite;
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      width: calc(100% + 4px);
+      height: calc(100% + 4px);
+      background: var(--gradient-glow);
+      z-index: -2;
+      border-radius: 50px;
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .btn:hover::before {
+      opacity: 1;
+    }
+
+    .btn:hover::after {
+      opacity: 1;
+    }
+
+    .btn:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: var(--shadow-lg), 0 0 40px rgba(255, 102, 0, 0.4), 0 0 80px rgba(0, 212, 255, 0.2);
+      animation: none;
+      color: var(--light);
+    }
+
+    .btn:hover .btn-icon {
+      transform: translateX(8px);
+      animation: none;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: var(--transition);
+      animation: fadeIn 2s infinite;
+    }
+
+    @keyframes fadeIn {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+
+    .hero-scroll:hover {
+      color: var(--primary);
+    }
+
+    .hero-scroll i {
+      font-size: 1.5rem;
+      margin-top: 10px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
+    }
+
+    /* ---------- STATS ---------- */
+    .stats {
+      padding: 100px 5%;
+      background: var(--glass);
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+      border-top: 1px solid var(--glass-light);
+      border-bottom: 1px solid var(--glass-light);
+    }
+
+    .stats-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 30px;
+      background: var(--glass);
+      border-radius: 15px;
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+      border: 1px solid var(--glass-light);
+      transition: var(--transition);
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .stat-item.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .stat-item:nth-child(1) { transition-delay: 0.1s; }
+    .stat-item:nth-child(2) { transition-delay: 0.2s; }
+    .stat-item:nth-child(3) { transition-delay: 0.3s; }
+    .stat-item:nth-child(4) { transition-delay: 0.4s; }
+
+    .stat-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      border-color: var(--primary);
+    }
+
+    .stat-number {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 10px;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* ---------- GALLERY ---------- */
+    .gallery {
+      padding: 120px 5%;
+      position: relative;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 70px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .section-header.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-header h2 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--light);
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-header h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 2px;
+      animation: lineGrow 1s ease-out;
+    }
+
+    @keyframes lineGrow {
+      from { width: 0; }
+      to { width: 80px; }
+    }
+
+    .section-header p {
+      max-width: 700px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1.1rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      transition: var(--transition);
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .gallery-item.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .gallery-item:nth-child(1) { transition-delay: 0.1s; }
+    .gallery-item:nth-child(2) { transition-delay: 0.2s; }
+    .gallery-item:nth-child(3) { transition-delay: 0.3s; }
+    .gallery-item:nth-child(4) { transition-delay: 0.4s; }
+
+    .gallery-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .caption {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 25px;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
+      color: var(--light);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover .caption {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .caption h3 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+
+    .caption p {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* ---------- SPEAKERS ---------- */
+    .speakers {
+      padding: 120px 5%;
+      background: var(--glass);
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+    }
+
+    .speakers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .speaker-card {
+      background: var(--glass);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      transition: var(--transition);
+      border: 1px solid var(--glass-light);
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .speaker-card.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .speaker-card:nth-child(1) { transition-delay: 0.1s; }
+    .speaker-card:nth-child(2) { transition-delay: 0.2s; }
+    .speaker-card:nth-child(3) { transition-delay: 0.3s; }
+    .speaker-card:nth-child(4) { transition-delay: 0.4s; }
+
+    .speaker-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+      border-color: var(--primary);
+    }
+
+    .speaker-image {
+      height: 300px;
+      overflow: hidden;
+    }
+
+    .speaker-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .speaker-card:hover .speaker-image img {
+      transform: scale(1.05);
+    }
+
+    .speaker-info {
+      padding: 25px;
+      text-align: center;
+    }
+
+    .speaker-info h3 {
+      font-size: 1.4rem;
+      margin-bottom: 5px;
+      color: var(--light);
+    }
+
+    .speaker-info p {
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .speaker-info .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .social-links a {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1.1rem;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      color: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    /* ---------- SCHEDULE ---------- */
+    .schedule {
+      padding: 120px 5%;
+      position: relative;
+    }
+
+    .schedule-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .schedule-day {
+      margin-bottom: 50px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .schedule-day.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .schedule-day:nth-child(1) { transition-delay: 0.2s; }
+    .schedule-day:nth-child(2) { transition-delay: 0.4s; }
+
+    .day-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .day-header h3 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-right: 20px;
+    }
+
+    .day-header .date {
+      background: var(--primary);
+      color: var(--light);
+      padding: 5px 15px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      animation: pulseScale 1.5s infinite;
+    }
+
+    .schedule-item {
+      background: var(--glass);
+      border-radius: 10px;
+      padding: 25px;
+      margin-bottom: 20px;
+      border: 1px solid var(--glass-light);
+      transition: var(--transition);
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+
+    .schedule-item.animated {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .schedule-item:nth-child(1) { transition-delay: 0.1s; }
+    .schedule-item:nth-child(2) { transition-delay: 0.2s; }
+    .schedule-item:nth-child(3) { transition-delay: 0.3s; }
+    .schedule-item:nth-child(4) { transition-delay: 0.4s; }
+
+    .schedule-item:hover {
+      transform: translateX(10px);
+      border-color: var(--primary);
+    }
+
+    .schedule-time {
+      font-size: 1.1rem;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .schedule-title {
+      font-size: 1.3rem;
+      color: var(--light);
+      margin-bottom: 10px;
+    }
+
+    .schedule-speaker {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.95rem;
+    }
+
+    /* ---------- VOTING SECTION ---------- */
+    .voting {
+      padding: 120px 5%;
+      background: var(--darker);
+    }
+
+    .vote-form {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--glass);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--glass-light);
+    }
+
+    /* ---------- TICKETS SECTION ---------- */
+    .tickets {
+      padding: 120px 5%;
+      background: var(--glass);
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+    }
+
+    .ticket-form {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--darker);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--glass-light);
+    }
+
+    /* ---------- CTA ---------- */
+    .cta {
+      padding: 120px 5%;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(255,102,0,0.1) 0%, rgba(0,0,0,0.8) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,102,0,0.05) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .cta h2 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--light);
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .cta p {
+      max-width: 700px;
+      margin: 0 auto 40px;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.1rem;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease 0.2s;
+    }
+
+    .cta.animated h2,
+    .cta.animated p {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      background: var(--darker);
+      padding: 80px 5% 30px;
+      position: relative;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 50px;
+      margin-bottom: 60px;
+    }
+
+    .footer-column {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .footer-column.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .footer-column:nth-child(1) { transition-delay: 0.1s; }
+    .footer-column:nth-child(2) { transition-delay: 0.2s; }
+    .footer-column:nth-child(3) { transition-delay: 0.3s; }
+
+    .footer-column h3 {
+      color: var(--primary);
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--primary);
+      animation: lineGrow 1s ease-out;
+    }
+
+    .footer-column p {
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      transition: var(--transition);
+      display: inline-block;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+      transform: translateX(5px);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .footer-social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: rgba(255, 255, 255, 0.7);
+      transition: var(--transition);
+    }
+
+    .footer-social a:hover {
+      background: var(--primary);
+      color: var(--light);
+      transform: translateY(-5px);
+    }
+
+    .footer-bottom {
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease 0.4s;
+    }
+
+    .footer-bottom.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .footer-copyright {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .footer-copyright p {
+      color: rgba(255, 255, 255, 0.7);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .footer-legal-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+    }
+
+    .footer-legal-links a {
+      color: var(--primary-light);
+      text-decoration: none;
+      transition: var(--transition);
+      padding: 5px 10px;
+      border-radius: 4px;
+    }
+
+    .footer-legal-links a:hover {
+      color: var(--primary);
+      background: var(--glass-light);
+    }
+
+    .footer-legal-links span {
+      color: rgba(255, 255, 255, 0.3);
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .footer-legal-links {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .footer-legal-links span {
+        display: none;
+      }
+
+      .footer-copyright p {
+        font-size: 0.8rem;
+      }
+    }
+
+    /* ---------- FLOATING ACTION BUTTON ---------- */
+    .fab {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 70px;
+      height: 70px;
+      background: var(--gradient-primary);
+      border: none;
+      border-radius: 50%;
+      color: var(--light);
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+      z-index: 99;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fabPulse 2s infinite;
+    }
+
+    .fab:hover {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: var(--shadow-lg), 0 0 30px rgba(255, 102, 0, 0.5);
+    }
+
+    @keyframes fabPulse {
+      0%, 100% { box-shadow: var(--shadow-md), 0 0 0 0 rgba(255, 102, 0, 0.7); }
+      50% { box-shadow: var(--shadow-md), 0 0 0 20px rgba(255, 102, 0, 0); }
+    }
+
+    /* ---------- SCROLL PROGRESS BAR ---------- */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 4px;
+      background: var(--gradient-primary);
+      z-index: 101;
+      transition: width 0.3s ease;
+    }
+
+    /* ---------- MEDIA QUERIES ---------- */
+    @media (max-width: 992px) {
+      .nav-links {
+        gap: 20px;
+      }
+      
+      .btn {
+        padding: 20px 60px;
+        font-size: 1.3rem;
+      }
+
+      .fab {
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        font-size: 1.3rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 20px 5%;
+      }
+      
+      .nav-logo {
+        height: 40px;
+      }
+      
+      .hero-content {
+        padding-top: 80px;
+      }
+      
+      .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .gallery-item:first-child {
+        grid-column: span 2;
+      }
+
+      .vote-options {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-links.mobile {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .stats-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .gallery-item:first-child {
+        grid-column: span 1;
+      }
+      
+      .btn {
+        padding: 18px 50px;
+        font-size: 1.2rem;
+      }
+
+      .modal-content {
+        padding: 20px;
+        margin: 20px;
+        max-width: calc(100% - 40px);
+      }
+
+      .ticket-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .ticket-price {
+        margin-top: 10px;
+      }
+
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+
+      .fab {
+        bottom: 15px;
+        right: 15px;
+        width: 55px;
+        height: 55px;
+        font-size: 1.2rem;
+      }
+    }
+
+    section,
+    footer {
+      padding-left: 8vw;
+      padding-right: 8vw;
+    }
+    .section-header {
+      margin-bottom: 50px;
+    }
+    .stats,
+    .gallery,
+    .speakers,
+    .schedule,
+    .voting,
+    .tickets,
+    .cta {
+      padding-top: 90px;
+      padding-bottom: 90px;
+    }
+
+    .speaker-card,
+    .gallery-item,
+    .stat-item,
+    .schedule-item,
+    .vote-category,
+    .ticket-option,
+    .vote-form,
+    .ticket-form {
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--glass-border);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .speaker-card::before,
+    .gallery-item::before,
+    .stat-item::before,
+    .schedule-item::before,
+    .vote-category::before,
+    .ticket-option::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: var(--transition);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .speaker-card:hover,
+    .gallery-item:hover,
+    .stat-item:hover,
+    .schedule-item:hover,
+    .vote-category:hover,
+    .ticket-option:hover {
+      box-shadow: var(--shadow-lg), 0 0 30px rgba(255, 102, 0, 0.2);
+      transform: translateY(-12px) scale(1.02);
+      border-color: var(--primary);
+    }
+
+    .speaker-card:hover::before,
+    .gallery-item:hover::before,
+    .stat-item:hover::before,
+    .schedule-item:hover::before,
+    .vote-category:hover::before,
+    .ticket-option:hover::before {
+      left: 100%;
+    }
+
+    /* Enhanced loading states */
+    .loading-shimmer {
+      background: linear-gradient(90deg, 
+        rgba(255,255,255,0.1) 25%, 
+        rgba(255,255,255,0.2) 50%, 
+        rgba(255,255,255,0.1) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    @keyframes slideInError {
+      0% { 
+        opacity: 0; 
+        transform: translateY(-10px); 
+      }
+      100% { 
+        opacity: 1; 
+        transform: translateY(0); 
+      }
+    }
+
+    /* Input validation styles */
+    .form-group input.valid {
+      border-color: #22c55e !important;
+      box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2) !important;
+      background: rgba(34, 197, 94, 0.05) !important;
+    }
+
+    .form-group input.invalid {
+      border-color: #ff4444 !important;
+      box-shadow: 0 0 0 2px rgba(255, 68, 68, 0.2) !important;
+      background: rgba(255, 68, 68, 0.05) !important;
+    }
+
+    .character-count {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: 2px;
+      text-align: right;
+    }
+
+    .character-count.warning {
+      color: #fbbf24;
+    }
+
+    .character-count.error {
+      color: #ff4444;
+    }
+
+    /* Admin Panel Styles */
+    .admin-tabs {
+      display: flex;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--glass-border);
+    }
+
+    .admin-tab {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      padding: 12px 24px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 500;
+      border-bottom: 3px solid transparent;
+      transition: var(--transition);
+    }
+
+    .admin-tab:hover {
+      color: var(--primary);
+      background: var(--glass-light);
+    }
+
+    .admin-tab.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+      background: var(--glass-light);
+    }
+
+    .admin-tab-content {
+      display: none;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .admin-tab-content.active {
+      display: block;
+    }
+
+    .data-container {
+      max-height: 60vh;
+      overflow-y: auto;
+      background: var(--glass);
+      border-radius: 8px;
+      padding: 15px;
+      border: 1px solid var(--glass-border);
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    .data-table th,
+    .data-table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--glass-border);
+      color: var(--text-light);
+    }
+
+    .data-table th {
+      background: var(--glass-light);
+      color: var(--primary);
+      font-weight: 600;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .data-table tr:hover {
+      background: var(--glass-light);
+    }
+
+    .data-card {
+      background: var(--glass-light);
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 15px;
+      border: 1px solid var(--glass-border);
+      transition: var(--transition);
+    }
+
+    .data-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .data-card-header {
+      display: flex;
+      justify-content: between;
+      align-items: center;
+      margin-bottom: 10px;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .data-card-content {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .data-card-meta {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.8rem;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid var(--glass-border);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-muted);
+    }
+
+    .empty-state i {
+      font-size: 3rem;
+      color: var(--glass-border);
+      margin-bottom: 15px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      background: var(--glass-light);
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      border: 1px solid var(--glass-border);
+    }
+
+    .stat-card h4 {
+      color: var(--primary);
+      font-size: 1.5rem;
+      margin-bottom: 5px;
+    }
+
+    .stat-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .settings-section {
+      background: var(--glass-light);
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid var(--glass-border);
+      margin-bottom: 20px;
+    }
+
+    .settings-section h4 {
+      color: var(--primary);
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+
+    .category-editor {
+      background: var(--glass-light);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 15px;
+      border: 1px solid var(--glass-border);
+    }
+
+    .category-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .category-title-input {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 4px;
+      padding: 8px 12px;
+      color: var(--text-light);
+      font-size: 1rem;
+      font-weight: 600;
+      width: 300px;
+    }
+
+    .option-input {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 4px;
+      padding: 6px 10px;
+      color: var(--text-light);
+      margin: 5px;
+      width: 200px;
+    }
+
+    .option-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .option-item button {
+      background: #ff4444;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      padding: 4px 8px;
+      cursor: pointer;
+      margin-left: 10px;
+      font-size: 0.8rem;
+    }
+
+    .add-option-btn {
+      background: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 6px 12px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .category-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-small {
+      padding: 6px 12px;
+      font-size: 0.85rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-danger {
+      background: #ff4444;
+      color: white;
+    }
+
+    .btn-success {
+      background: #22c55e;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============== SCROLL PROGRESS BAR ============== -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ============== BACKGROUND ============== -->
+<div class="bg-container">
+  <div class="bg-image"></div>
+  <div class="bg-overlay"></div>
+  <div class="bg-particles"></div>
+</div>
+
+<!-- ============== LOADER ============== -->
+<section id="loader">
+  <img src="images/logo.jpg" alt="ANCE Logo" />
+  <div id="loaderBarWrap">
+    <div id="loaderBar"></div>
+  </div>
+  <div id="loaderText">0%</div>
+</section>
+
+<!-- ============== VOTING MODAL ============== -->
+<div id="votingModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal" onclick="closeModal('votingModal')">&times;</span>
+    <div id="voteForm">
+      <h2>Cast Your Vote</h2>
+      <p>Please enter your email and select your choices for each category. You can only vote once per email address.</p>
+      <div style="text-align: right; margin-bottom: 15px;">
+        <button type="button" onclick="generateVotingForm()" style="background: var(--glass-light); color: var(--text-muted); border: 1px solid var(--glass-border); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; cursor: pointer;">🔄 Refresh Categories</button>
+      </div>
+      
+      <div class="form-group">
+        <label for="voterEmail">Email Address *</label>
+        <input type="email" id="voterEmail" required placeholder="your@email.com" autocomplete="email" maxlength="254" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+      </div>
+
+      <!-- Dynamic categories will be inserted here -->
+      
+      <div class="form-group" id="voteAgreementSection">
+        <label class="checkbox-option">
+          <input type="checkbox" id="voteAgreement" required>
+          <label>I agree that my vote is final and I can only vote once</label>
+        </label>
+      </div>
+
+      <button class="form-submit" onclick="submitVote()">Submit Vote</button>
+    </div>
+
+    <div id="voteSuccess" class="vote-success" style="display: none;">
+      <i class="fas fa-check-circle"></i>
+      <h3>Thank You for Voting!</h3>
+      <p>Your vote has been successfully recorded. You can't vote again with this email address.</p>
+      <button class="form-submit" onclick="closeModal('votingModal')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============== PRIVACY POLICY MODAL ============== -->
+<div id="privacyModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal" onclick="closeModal('privacyModal')">&times;</span>
+    <h2>Privacy Policy</h2>
+    <div style="max-height: 60vh; overflow-y: auto; padding-right: 10px;">
+      <p><strong>Last updated:</strong> January 1, 2025</p>
+      
+      <h3>1. Information We Collect</h3>
+      <p>We collect information you provide directly to us, such as when you:</p>
+      <ul>
+        <li>Register for the Asian Networkers Convention & Expo</li>
+        <li>Purchase tickets through our website</li>
+        <li>Participate in voting or surveys</li>
+        <li>Subscribe to our newsletter</li>
+        <li>Contact us for support</li>
+      </ul>
+
+      <h3>2. How We Use Your Information</h3>
+      <p>We use the information we collect to:</p>
+      <ul>
+        <li>Process your registration and ticket purchases</li>
+        <li>Communicate with you about the event</li>
+        <li>Send you important updates and notifications</li>
+        <li>Improve our services and user experience</li>
+        <li>Comply with legal obligations</li>
+      </ul>
+
+      <h3>3. Information Sharing</h3>
+      <p>We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except as described in this policy.</p>
+
+      <h3>4. Data Security</h3>
+      <p>We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
+
+      <h3>5. Your Rights</h3>
+      <p>You have the right to:</p>
+      <ul>
+        <li>Access your personal information</li>
+        <li>Correct inaccurate information</li>
+        <li>Delete your personal information</li>
+        <li>Opt out of marketing communications</li>
+      </ul>
+
+      <h3>6. Contact Us</h3>
+      <p>If you have questions about this Privacy Policy, please contact us at:</p>
+      <p>Email: privacy@asiannetworkers.com<br>
+         Phone: +91 80 1234 5678</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============== TERMS OF SERVICE MODAL ============== -->
+<div id="termsModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal" onclick="closeModal('termsModal')">&times;</span>
+    <h2>Terms of Service</h2>
+    <div style="max-height: 60vh; overflow-y: auto; padding-right: 10px;">
+      <p><strong>Last updated:</strong> January 1, 2025</p>
+      
+      <h3>1. Acceptance of Terms</h3>
+      <p>By accessing and using this website and purchasing tickets for the Asian Networkers Convention & Expo, you accept and agree to be bound by these Terms of Service.</p>
+
+      <h3>2. Event Tickets</h3>
+      <ul>
+        <li>All ticket sales are final unless the event is cancelled</li>
+        <li>Tickets are non-transferable unless explicitly stated</li>
+        <li>You must present valid ID matching the ticket holder's name</li>
+        <li>We reserve the right to refuse entry for any reason</li>
+      </ul>
+
+      <h3>3. Event Changes</h3>
+      <p>We reserve the right to:</p>
+      <ul>
+        <li>Change event dates, times, or venue</li>
+        <li>Modify the event program or speakers</li>
+        <li>Cancel the event due to circumstances beyond our control</li>
+      </ul>
+
+      <h3>4. Code of Conduct</h3>
+      <p>All attendees must:</p>
+      <ul>
+        <li>Treat all participants with respect</li>
+        <li>Follow venue rules and regulations</li>
+        <li>Not engage in harassment or discrimination</li>
+        <li>Respect intellectual property rights</li>
+      </ul>
+
+      <h3>5. Limitation of Liability</h3>
+      <p>Our liability for any claims related to the event is limited to the amount paid for your ticket.</p>
+
+      <h3>6. Contact Information</h3>
+      <p>For questions about these terms, contact us at:</p>
+      <p>Email: legal@asiannetworkers.com<br>
+         Phone: +91 80 1234 5678</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============== REFUND POLICY MODAL ============== -->
+<div id="refundModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal" onclick="closeModal('refundModal')">&times;</span>
+    <h2>Refund Policy</h2>
+    <div style="max-height: 60vh; overflow-y: auto; padding-right: 10px;">
+      <p><strong>Last updated:</strong> January 1, 2025</p>
+      
+      <h3>1. General Policy</h3>
+      <p>All ticket purchases are generally non-refundable. However, we understand that circumstances may arise that prevent attendance.</p>
+
+      <h3>2. Refund Eligibility</h3>
+      <p>Refunds may be granted in the following situations:</p>
+      <ul>
+        <li>Event cancellation by ANCE</li>
+        <li>Significant changes to event date or location</li>
+        <li>Medical emergencies (with documentation)</li>
+        <li>Requests made within 48 hours of purchase</li>
+      </ul>
+
+      <h3>3. Refund Process</h3>
+      <ul>
+        <li>Submit refund requests to refunds@asiannetworkers.com</li>
+        <li>Include your order number and reason for refund</li>
+        <li>Provide supporting documentation if applicable</li>
+        <li>Allow 5-10 business days for processing</li>
+      </ul>
+
+      <h3>4. Processing Fees</h3>
+      <p>A processing fee of ₹500 may be deducted from approved refunds to cover administrative costs.</p>
+
+      <h3>5. Alternative Options</h3>
+      <p>Instead of refunds, we may offer:</p>
+      <ul>
+        <li>Credit for future events</li>
+        <li>Ticket transfer to another person</li>
+        <li>Partial refund with credit for future events</li>
+      </ul>
+
+      <h3>6. Contact for Refunds</h3>
+      <p>Email: refunds@asiannetworkers.com<br>
+         Phone: +91 80 1234 5678<br>
+         Hours: Monday-Friday, 9 AM - 6 PM IST</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============== COOKIE POLICY MODAL ============== -->
+<div id="cookieModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal" onclick="closeModal('cookieModal')">&times;</span>
+    <h2>Cookie Policy</h2>
+    <div style="max-height: 60vh; overflow-y: auto; padding-right: 10px;">
+      <p><strong>Last updated:</strong> January 1, 2025</p>
+      
+      <h3>1. What Are Cookies</h3>
+      <p>Cookies are small text files stored on your device when you visit our website. They help us provide you with a better experience.</p>
+
+      <h3>2. Types of Cookies We Use</h3>
+      <ul>
+        <li><strong>Essential Cookies:</strong> Required for basic website functionality</li>
+        <li><strong>Performance Cookies:</strong> Help us understand how you use our website</li>
+        <li><strong>Functional Cookies:</strong> Remember your preferences and settings</li>
+        <li><strong>Marketing Cookies:</strong> Used to show relevant advertisements</li>
+      </ul>
+
+      <h3>3. Local Storage</h3>
+      <p>We use browser local storage to:</p>
+      <ul>
+        <li>Store your voting preferences</li>
+        <li>Remember form data to improve user experience</li>
+        <li>Save ticket purchase information locally</li>
+      </ul>
+
+      <h3>4. Managing Cookies</h3>
+      <p>You can control cookies through your browser settings:</p>
+      <ul>
+        <li>Block all cookies</li>
+        <li>Allow only specific cookies</li>
+        <li>Delete existing cookies</li>
+        <li>Receive notifications when cookies are set</li>
+      </ul>
+
+      <h3>5. Third-Party Cookies</h3>
+      <p>Our website may include content from third-party services like:</p>
+      <ul>
+        <li>Google Analytics (for website analytics)</li>
+        <li>Social media platforms</li>
+        <li>Payment processors</li>
+      </ul>
+
+      <h3>6. Contact Us</h3>
+      <p>For questions about our cookie policy:</p>
+      <p>Email: privacy@asiannetworkers.com</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============== ACCESSIBILITY MODAL ============== -->
+<div id="accessibilityModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal" onclick="closeModal('accessibilityModal')">&times;</span>
+    <h2>Accessibility Statement</h2>
+    <div style="max-height: 60vh; overflow-y: auto; padding-right: 10px;">
+      <p><strong>Last updated:</strong> January 1, 2025</p>
+      
+      <h3>1. Our Commitment</h3>
+      <p>Asian Networkers Convention & Expo is committed to ensuring digital accessibility for people with disabilities. We are continually improving the user experience for everyone.</p>
+
+      <h3>2. Accessibility Features</h3>
+      <ul>
+        <li>Keyboard navigation support</li>
+        <li>Screen reader compatibility</li>
+        <li>High contrast color schemes</li>
+        <li>Scalable text and images</li>
+        <li>Clear navigation structure</li>
+        <li>Alternative text for images</li>
+      </ul>
+
+      <h3>3. Venue Accessibility</h3>
+      <p>Bangalore International Convention Center provides:</p>
+      <ul>
+        <li>Wheelchair accessible entrances and facilities</li>
+        <li>Accessible parking spaces</li>
+        <li>Sign language interpreters (upon request)</li>
+        <li>Assistive listening devices</li>
+        <li>Accessible restroom facilities</li>
+      </ul>
+
+      <h3>4. Special Accommodation Requests</h3>
+      <p>If you need special accommodations, please contact us at least 2 weeks before the event:</p>
+      <ul>
+        <li>Dietary restrictions</li>
+        <li>Mobility assistance</li>
+        <li>Communication support</li>
+        <li>Service animal accommodations</li>
+      </ul>
+
+      <h3>5. Feedback</h3>
+      <p>We welcome feedback on accessibility. Please contact us:</p>
+      <p>Email: accessibility@asiannetworkers.com<br>
+         Phone: +91 80 1234 5678<br>
+         We aim to respond within 2 business days.</p>
+
+      <h3>6. Standards Compliance</h3>
+      <p>We strive to conform to WCAG 2.1 Level AA standards and regularly audit our website for accessibility improvements.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============== ADMIN MODAL ============== -->
+<div id="adminModal" class="modal">
+  <div class="modal-content" style="max-width: 90%; max-height: 90vh;">
+    <span class="close-modal" onclick="closeModal('adminModal')">&times;</span>
+    <h2>Admin Dashboard</h2>
+    <p>View all voting and ticket booking data stored locally.</p>
+    
+    <div style="margin: 20px 0;">
+      <button onclick="exportData()" style="background: var(--secondary); color: white; padding: 10px 20px; border: none; border-radius: 5px; margin-right: 10px; cursor: pointer;">Export All Data</button>
+      <button onclick="clearAllData()" style="background: #ff4444; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Clear All Data</button>
+    </div>
+
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="showAdminTab('votes')">Votes (<span id="voteCount">0</span>)</button>
+      <button class="admin-tab" onclick="showAdminTab('tickets')">Ticket Orders (<span id="ticketCount">0</span>)</button>
+      <button class="admin-tab" onclick="showAdminTab('categories')">Manage Categories</button>
+      <button class="admin-tab" onclick="showAdminTab('settings')">Settings</button>
+    </div>
+
+    <div id="votesTab" class="admin-tab-content active">
+      <h3>Voting Data</h3>
+      <div id="votesData" class="data-container">
+        <p>Loading voting data...</p>
+      </div>
+    </div>
+
+    <div id="ticketsTab" class="admin-tab-content">
+      <h3>Ticket Booking Data</h3>
+      <div id="ticketsData" class="data-container">
+        <p>Loading ticket data...</p>
+      </div>
+    </div>
+
+    <div id="categoriesTab" class="admin-tab-content">
+      <h3>Manage Voting Categories</h3>
+      <div style="margin-bottom: 20px;">
+        <button onclick="addNewCategory()" style="background: var(--primary); color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px;">Add New Category</button>
+        <button onclick="updateVotingForm()" style="background: var(--secondary); color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Update Voting Form</button>
+      </div>
+      <div id="categoriesData" class="data-container">
+        <p>Loading categories...</p>
+      </div>
+    </div>
+
+    <div id="settingsTab" class="admin-tab-content">
+      <h3>Admin Settings</h3>
+      <div class="data-container">
+        <div class="settings-section">
+          <h4>Data Synchronization</h4>
+          <p>Sync data across browsers and devices using cloud storage simulation.</p>
+          <button onclick="syncToCloud()" style="background: var(--secondary); color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin: 10px 5px;">Sync to Cloud</button>
+          <button onclick="loadFromCloud()" style="background: var(--primary); color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin: 10px 5px;">Load from Cloud</button>
+          <div id="syncStatus" style="margin-top: 10px; color: var(--text-muted);"></div>
+        </div>
+        
+        <div class="settings-section" style="margin-top: 30px;">
+          <h4>Event Configuration</h4>
+          <div class="form-group">
+            <label>Event Name:</label>
+            <input type="text" id="eventName" value="Asian Networkers Convention & Expo 2025" style="width: 100%; padding: 8px; margin: 5px 0; background: var(--glass-light); border: 1px solid var(--glass-border); border-radius: 4px; color: var(--text-light);">
+          </div>
+          <div class="form-group">
+            <label>Event Date:</label>
+            <input type="text" id="eventDate" value="October 1-2, 2025" style="width: 100%; padding: 8px; margin: 5px 0; background: var(--glass-light); border: 1px solid var(--glass-border); border-radius: 4px; color: var(--text-light);">
+          </div>
+          <div class="form-group">
+            <label>Voting Deadline:</label>
+            <input type="datetime-local" id="votingDeadline" style="width: 100%; padding: 8px; margin: 5px 0; background: var(--glass-light); border: 1px solid var(--glass-border); border-radius: 4px; color: var(--text-light);">
+          </div>
+          <button onclick="saveEventSettings()" style="background: var(--primary); color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px;">Save Settings</button>
+        </div>
+
+        <div class="settings-section" style="margin-top: 30px;">
+          <h4>Database Management</h4>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <h4 id="totalVotesDb">0</h4>
+              <p>Total Votes (All Devices)</p>
+            </div>
+            <div class="stat-card">
+              <h4 id="totalTicketsDb">0</h4>
+              <p>Total Tickets (All Devices)</p>
+            </div>
+            <div class="stat-card">
+              <h4 id="lastSyncTime">Never</h4>
+              <p>Last Sync</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============== TICKET MODAL ============== -->
+<div id="ticketModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal" onclick="closeModal('ticketModal')">&times;</span>
+    <div id="ticketForm">
+      <h2>Get Your Tickets</h2>
+      <p>Select your ticket type and quantity below. All prices are in USD.</p>
+      
+      <div class="ticket-option">
+        <div class="ticket-header">
+          <div class="ticket-name">General Admission</div>
+          <div class="ticket-price">$199</div>
+        </div>
+        <div class="ticket-description">
+          Access to all keynote sessions, exhibition hall, and networking areas. Does not include workshops or gala dinner.
+        </div>
+        <div class="ticket-quantity">
+          <label>Quantity:</label>
+          <input type="number" min="0" max="10" value="0" id="generalQty" title="Select quantity (0-10)">
+        </div>
+      </div>
+
+      <div class="ticket-option">
+        <div class="ticket-header">
+          <div class="ticket-name">VIP Pass</div>
+          <div class="ticket-price">$499</div>
+        </div>
+        <div class="ticket-description">
+          Includes all General Admission benefits plus premium seating, access to all workshops, and gala dinner ticket.
+        </div>
+        <div class="ticket-quantity">
+          <label>Quantity:</label>
+          <input type="number" min="0" max="10" value="0" id="vipQty" title="Select quantity (0-10)">
+        </div>
+      </div>
+
+      <div class="ticket-option">
+        <div class="ticket-header">
+          <div class="ticket-name">Student Pass</div>
+          <div class="ticket-price">$99</div>
+        </div>
+        <div class="ticket-description">
+          Discounted rate for students with valid ID. Access to all keynote sessions and exhibition hall.
+        </div>
+        <div class="ticket-quantity">
+          <label>Quantity:</label>
+          <input type="number" min="0" max="10" value="0" id="studentQty" title="Select quantity (0-10)">
+        </div>
+      </div>
+
+      <h3 style="margin-top: 30px;">Your Information</h3>
+      
+      <div class="form-group">
+        <label for="ticketName">Full Name *</label>
+        <input type="text" id="ticketName" required placeholder="John Doe" autocomplete="name" maxlength="50" pattern="[a-zA-Z\s\-']{2,50}" title="Enter your full name (first and last name)">
+      </div>
+
+      <div class="form-group">
+        <label for="ticketEmail">Email Address *</label>
+        <input type="email" id="ticketEmail" required placeholder="your@email.com" autocomplete="email" maxlength="254" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Enter a valid email address">
+      </div>
+
+      <div class="form-group">
+        <label for="ticketPhone">Phone Number *</label>
+        <input type="tel" id="ticketPhone" required placeholder="(123) 456-7890" autocomplete="tel" maxlength="18" title="Enter a 10-digit phone number">
+      </div>
+
+      <button class="form-submit" onclick="processTicketOrder()">Proceed to Payment</button>
+    </div>
+
+    <div id="ticketSuccess" style="display: none; text-align: center; padding: 30px;">
+      <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--primary); margin-bottom: 20px;"></i>
+      <h3>Order Received!</h3>
+      <p>Thank you for your ticket purchase. A confirmation has been sent to your email.</p>
+      <button class="form-submit" onclick="closeModal('ticketModal')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============== NAVIGATION ============== -->
+<nav>
+  <img src="images/logo.jpg" alt="Asian Networkers" class="nav-logo">
+  <div class="nav-links" id="navLinks">
+    <a href="#about">About</a>
+    <a href="#speakers">Speakers</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-toggle" id="navToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <a href="#" class="nav-cta" onclick="openModal('ticketModal')">Get Tickets</a>
+  <div id="adminAccess" style="display: none;">
+    <a href="#" onclick="openModal('adminModal')" style="color: var(--secondary); margin-left: 15px;">🔧 Admin</a>
+  </div>
+</nav>
+
+<!-- ============== HERO ============== -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <img class="logo" src="images/logo.jpg" alt="Asian Networkers">
+    <h1>Asian Networkers <span>Convention & Expo 2025</span></h1>
+    <p>Asia's premier networking event comes to <strong>Bangalore</strong> on <strong>October 1-2, 2025</strong>. Join industry leaders, innovators, and entrepreneurs for two days of transformative connections and growth.</p>
+    <div class="btnWrap">
+      <button class="btn" onclick="openModal('ticketModal')">
+        <span class="btn-icon">🎟️</span> Secure Your Spot Now
+      </button>
+    </div>
+    <div class="hero-scroll" onclick="document.querySelector('#about').scrollIntoView({ behavior: 'smooth' })">
+      Scroll to explore
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </div>
+</section>
+
+<!-- ============== STATS ============== -->
+<section class="stats" id="about">
+  <div class="stats-container">
+    <div class="stat-item">
+      <div class="stat-number">5,000+</div>
+      <div class="stat-label">Attendees</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">150+</div>
+      <div class="stat-label">Speakers</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">40+</div>
+      <div class="stat-label">Workshops</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">2</div>
+      <div class="stat-label">Unforgettable Days</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== GALLERY ============== -->
+<section class="gallery" id="gallery">
+  <div class="section-header">
+    <h2>Event Highlights</h2>
+    <p>Experience the energy and excitement of Asia's most anticipated networking event</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="images/pic2.jpg" alt="Networking Crowd">
+      <div class="caption">
+        <h3>Powerful Connections</h3>
+        <p>Meet thousands of like-minded professionals from across Asia</p>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="images/pic3.jpg" alt="Workshops">
+      <div class="caption">
+        <h3>Interactive Workshops</h3>
+        <p>Hands-on learning experiences with industry experts</p>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="images/pic4.jpg" alt="Gala Night">
+      <div class="caption">
+        <h3>Gala Celebration</h3>
+        <p>An unforgettable evening of networking and celebration</p>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="images/pic1.jpg" alt="Keynote Speaker">
+      <div class="caption">
+        <h3>Inspiring Keynotes</h3>
+        <p>Learn from the brightest minds in business and innovation</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== SPEAKERS ============== -->
+<section class="speakers" id="speakers">
+  <div class="section-header">
+    <h2>Featured Speakers</h2>
+    <p>Learn from industry leaders and visionary thinkers</p>
+  </div>
+  <div class="speakers-grid">
+    <div class="speaker-card">
+      <div class="speaker-image">
+        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Speaker 1">
+      </div>
+      <div class="speaker-info">
+        <h3>Dr. Priya Sharma</h3>
+        <p>CEO, TechInnovate Asia</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fas fa-globe"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="speaker-card">
+      <div class="speaker-image">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Speaker 2">
+      </div>
+      <div class="speaker-info">
+        <h3>Raj Patel</h3>
+        <p>Founder, NetworkX</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fas fa-globe"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="speaker-card">
+      <div class="speaker-image">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Speaker 3">
+      </div>
+      <div class="speaker-info">
+        <h3>Lisa Chen</h3>
+        <p>VP, Digital Strategy</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fas fa-globe"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="speaker-card">
+      <div class="speaker-image">
+        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Speaker 4">
+      </div>
+      <div class="speaker-info">
+        <h3>David Kim</h3>
+        <p>Angel Investor</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fas fa-globe"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== VOTING SECTION ============== -->
+<section class="voting" id="voting">
+  <div class="section-header">
+    <h2>Community Awards</h2>
+    <p>Vote for your favorites in each category. Voting closes October 1, 2025.</p>
+    <button class="btn" style="padding: 15px 40px; font-size: 1.2rem; margin-top: 20px;" onclick="openModal('votingModal')">
+      <span class="btn-icon">🗳️</span> Cast Your Vote
+    </button>
+  </div>
+</section>
+
+<!-- ============== SCHEDULE ============== -->
+<section class="schedule" id="schedule">
+  <div class="section-header">
+    <h2>Event Schedule</h2>
+    <p>Two days packed with learning, networking, and growth opportunities</p>
+  </div>
+  <div class="schedule-container">
+    <div class="schedule-day">
+      <div class="day-header">
+        <h3>Day 1</h3>
+        <div class="date">October 1, 2025</div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">08:00 - 09:00</div>
+        <h4 class="schedule-title">Registration & Welcome Coffee</h4>
+        <p class="schedule-speaker">Main Lobby</p>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">09:00 - 10:30</div>
+        <h4 class="schedule-title">Opening Keynote: The Future of Asian Business</h4>
+        <p class="schedule-speaker">By Dr. Priya Sharma</p>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">10:45 - 12:15</div>
+        <h4 class="schedule-title">Breakout Sessions: Choose Your Track</h4>
+        <p class="schedule-speaker">Various Speakers</p>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">12:15 - 13:45</div>
+        <h4 class="schedule-title">Networking Lunch</h4>
+        <p class="schedule-speaker">Grand Ballroom</p>
+      </div>
+    </div>
+    <div class="schedule-day">
+      <div class="day-header">
+        <h3>Day 2</h3>
+        <div class="date">October 2, 2025</div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">08:30 - 09:30</div>
+        <h4 class="schedule-title">Morning Networking</h4>
+        <p class="schedule-speaker">Exhibition Hall</p>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">09:30 - 11:00</div>
+        <h4 class="schedule-title">Panel Discussion: Innovation Across Asia</h4>
+        <p class="schedule-speaker">Moderated by Raj Patel</p>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">11:15 - 12:45</div>
+        <h4 class="schedule-title">Interactive Workshops</h4>
+        <p class="schedule-speaker">Various Rooms</p>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">19:00 - 22:00</div>
+        <h4 class="schedule-title">Gala Dinner & Awards Ceremony</h4>
+        <p class="schedule-speaker">Grand Ballroom</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CTA ============== -->
+<section class="cta">
+  <h2>Ready to Transform Your Network?</h2>
+  <p>Join thousands of professionals at Asia's premier networking event. Limited tickets available.</p>
+  <div class="btnWrap">
+    <button class="btn" onclick="openModal('ticketModal')">
+      <span class="btn-icon">🎟️</span> Book Your Tickets Now
+    </button>
+  </div>
+</section>
+
+<!-- ============== FLOATING ACTION BUTTON ============== -->
+<button class="fab" onclick="openModal('ticketModal')" title="Get Tickets">
+  🎟️
+</button>
+
+<!-- ============== FOOTER ============== -->
+<footer id="contact">
+  <div class="footer-content">
+    <div class="footer-column">
+      <h3>About ANCE</h3>
+      <p>The Asian Networkers Convention & Expo is Asia's premier networking event, bringing together professionals, entrepreneurs, and thought leaders from across the continent.</p>
+      <div class="footer-social">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="footer-column">
+      <h3>Quick Links</h3>
+      <ul class="footer-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#speakers">Speakers</a></li>
+        <li><a href="#schedule">Schedule</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Contact Us</h3>
+      <p><i class="fas fa-map-marker-alt"></i> Bangalore International Convention Center<br>
+         26/1, Dr Rajkumar Road, Malleshwaram West<br>
+         Bangalore, Karnataka 560055, India</p>
+      <p><i class="fas fa-phone"></i> +91 80 1234 5678</p>
+      <p><i class="fas fa-envelope"></i> info@asiannetworkers.com</p>
+      <p><i class="fas fa-globe"></i> www.asiannetworkers.com</p>
+    </div>
+    <div class="footer-column">
+      <h3>Legal & Support</h3>
+      <ul class="footer-links">
+        <li><a href="#" onclick="openModal('privacyModal')">Privacy Policy</a></li>
+        <li><a href="#" onclick="openModal('termsModal')">Terms of Service</a></li>
+        <li><a href="#" onclick="openModal('refundModal')">Refund Policy</a></li>
+        <li><a href="#" onclick="openModal('cookieModal')">Cookie Policy</a></li>
+        <li><a href="#" onclick="openModal('accessibilityModal')">Accessibility</a></li>
+        <li><a href="#" onclick="enableAdminAccess()" style="color: var(--glass-border); font-size: 0.8rem;">Admin Access</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copyright">
+      <p>© 2025 Asian Networkers Convention & Expo (ANCE). All rights reserved.</p>
+      <p style="font-size: 0.8rem; margin-top: 5px; opacity: 0.8;">
+        This website and its content are protected by copyright, trademark, and other intellectual property laws. 
+        Unauthorized reproduction or distribution of this website's content is strictly prohibited.
+      </p>
+    </div>
+    <div class="footer-legal-links">
+      <a href="#" onclick="openModal('privacyModal')">Privacy</a>
+      <span>•</span>
+      <a href="#" onclick="openModal('termsModal')">Terms</a>
+      <span>•</span>
+      <a href="#" onclick="openModal('cookieModal')">Cookies</a>
+      <span>•</span>
+      <a href="#" onclick="openModal('accessibilityModal')">Accessibility</a>
+      <span>•</span>
+      <a href="mailto:legal@asiannetworkers.com">Legal Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============== SCRIPT ============== -->
+<script>
+  // Loader animation
+  const loader = document.getElementById("loader");
+  const loaderBar = document.getElementById("loaderBar");
+  const loaderText = document.getElementById("loaderText");
+
+  let percent = 0;
+  const loading = setInterval(() => {
+    percent++;
+    loaderBar.style.width = percent + '%';
+    loaderText.textContent = percent + '%';
+    if (percent >= 100) {
+      clearInterval(loading);
+      loader.style.opacity = 0;
+      setTimeout(() => loader.style.display = 'none', 600);
+    }
+  }, 20);
+
+  // Modal functions
+  function openModal(modalId) {
+    // Refresh voting form when opening voting modal
+    if (modalId === 'votingModal') {
+      generateVotingForm();
+    }
+    
+    document.getElementById(modalId).style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+
+
+
+  // Smooth scrolling for navigation links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      // Only scroll if the anchor is not a modal trigger
+      if (this.getAttribute('onclick')) return;
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Mobile navigation toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  
+  navToggle.addEventListener('click', function() {
+    navToggle.classList.toggle('active');
+    navLinks.classList.toggle('mobile');
+    navLinks.classList.toggle('active');
+  });
+
+  // Close mobile menu when clicking on a link
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', function() {
+      navToggle.classList.remove('active');
+      navLinks.classList.remove('mobile', 'active');
+    });
+  });
+
+  // Scroll progress bar
+  function updateScrollProgress() {
+    const scrollProgress = document.getElementById('scrollProgress');
+    const scrollTop = window.pageYOffset;
+    const docHeight = document.body.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    scrollProgress.style.width = scrollPercent + '%';
+  }
+
+  // Navbar scroll effect
+  window.addEventListener('scroll', function() {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 50) {
+      nav.style.background = 'rgba(10, 10, 10, 0.95)';
+      nav.style.padding = '15px 5%';
+    } else {
+      nav.style.background = 'var(--glass)';
+      nav.style.padding = '25px 5%';
+    }
+    
+    // Update scroll progress
+    updateScrollProgress();
+  });
+
+  // Scroll animation trigger
+  function animateOnScroll() {
+    const elements = document.querySelectorAll('.section-header, .stat-item, .gallery-item, .speaker-card, .schedule-day, .schedule-item, .footer-column, .footer-bottom');
+    
+    elements.forEach(element => {
+      const elementPosition = element.getBoundingClientRect().top;
+      const screenPosition = window.innerHeight / 1.2;
+      
+      if (elementPosition < screenPosition) {
+        element.classList.add('animated');
+      }
+    });
+
+    // CTA section animation
+    const ctaSection = document.querySelector('.cta');
+    const ctaPosition = ctaSection.getBoundingClientRect().top;
+    const ctaScreenPosition = window.innerHeight / 1.2;
+    
+    if (ctaPosition < ctaScreenPosition) {
+      ctaSection.classList.add('animated');
+    }
+  }
+
+  // Enhanced form validation with comprehensive checks
+  function validateEmail(email) {
+    const re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    return re.test(email);
+  }
+
+  function validatePhone(phone) {
+    // Remove all non-digit characters
+    const cleanPhone = phone.replace(/\D/g, '');
+    // Check if it's exactly 10 digits
+    return cleanPhone.length === 10 && /^\d{10}$/.test(cleanPhone);
+  }
+
+  function validateName(name) {
+    // Name should be at least 2 characters, contain only letters, spaces, hyphens, and apostrophes
+    const nameRegex = /^[a-zA-Z\s\-']{2,50}$/;
+    return nameRegex.test(name.trim());
+  }
+
+  function formatPhoneNumber(phone) {
+    // Format phone number as (XXX) XXX-XXXX
+    const cleaned = phone.replace(/\D/g, '');
+    const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+    if (match) {
+      return '(' + match[1] + ') ' + match[2] + '-' + match[3];
+    }
+    return phone;
+  }
+
+  function showFieldError(fieldId, message) {
+    const field = document.getElementById(fieldId);
+    field.style.borderColor = '#ff4444';
+    field.style.boxShadow = '0 0 0 2px rgba(255, 68, 68, 0.2)';
+    field.style.background = 'rgba(255, 68, 68, 0.05)';
+    
+    // Remove existing error message
+    const existingError = field.parentNode.querySelector('.error-message');
+    if (existingError) existingError.remove();
+    
+    // Add error message with icon
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'error-message';
+    errorDiv.style.cssText = `
+      color: #ff4444;
+      font-size: 0.8rem;
+      margin-top: 5px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      animation: slideInError 0.3s ease-out;
+    `;
+    errorDiv.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
+    field.parentNode.appendChild(errorDiv);
+    
+    // Clear error on input
+    field.addEventListener('input', function clearError() {
+      field.style.borderColor = '';
+      field.style.boxShadow = '';
+      field.style.background = '';
+      if (errorDiv.parentNode) errorDiv.remove();
+      field.removeEventListener('input', clearError);
+    });
+  }
+
+  function showFieldSuccess(fieldId) {
+    const field = document.getElementById(fieldId);
+    field.style.borderColor = '#22c55e';
+    field.style.boxShadow = '0 0 0 2px rgba(34, 197, 94, 0.2)';
+    field.style.background = 'rgba(34, 197, 94, 0.05)';
+  }
+
+  function clearFieldError(fieldId) {
+    const field = document.getElementById(fieldId);
+    field.style.borderColor = '';
+    field.style.boxShadow = '';
+    field.style.background = '';
+    const errorMessage = field.parentNode.querySelector('.error-message');
+    if (errorMessage) errorMessage.remove();
+  }
+
+  // Enhanced vote submission with comprehensive validation
+  function submitVote() {
+    const email = document.getElementById('voterEmail').value.trim();
+    const categories = getVotingCategories();
+    const votes = {};
+    const agreement = document.getElementById('voteAgreement').checked;
+
+    let hasErrors = false;
+
+    // Validate email with detailed error messages
+    if (!email) {
+      showFieldError('voterEmail', 'Email address is required');
+      hasErrors = true;
+    } else if (email.length < 5) {
+      showFieldError('voterEmail', 'Email address is too short');
+      hasErrors = true;
+    } else if (email.length > 254) {
+      showFieldError('voterEmail', 'Email address is too long');
+      hasErrors = true;
+    } else if (!validateEmail(email)) {
+      showFieldError('voterEmail', 'Please enter a valid email address (e.g., user@example.com)');
+      hasErrors = true;
+    } else if (email.includes('..')) {
+      showFieldError('voterEmail', 'Email cannot contain consecutive dots');
+      hasErrors = true;
+    } else {
+      clearFieldError('voterEmail');
+      showFieldSuccess('voterEmail');
+    }
+
+    // Validate all dynamic categories
+    categories.forEach(category => {
+      const selectedOption = document.querySelector(`input[name="${category.id}"]:checked`);
+      const categoryContainer = document.querySelector(`input[name="${category.id}"]`)?.closest('.vote-category');
+      
+      if (!selectedOption && categoryContainer) {
+        const existingError = categoryContainer.querySelector('.selection-error');
+        if (existingError) existingError.remove();
+        
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'selection-error error-message';
+        errorDiv.style.cssText = `
+          color: #ff4444;
+          font-size: 0.8rem;
+          margin-top: 10px;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          animation: slideInError 0.3s ease-out;
+          background: rgba(255, 68, 68, 0.05);
+          padding: 8px 12px;
+          border-radius: 6px;
+          border-left: 3px solid #ff4444;
+        `;
+        errorDiv.innerHTML = `<i class="fas fa-exclamation-circle"></i> Please select your choice for ${category.title}`;
+        categoryContainer.appendChild(errorDiv);
+        hasErrors = true;
+      } else if (selectedOption && categoryContainer) {
+        const existingError = categoryContainer.querySelector('.selection-error');
+        if (existingError) existingError.remove();
+        votes[category.id] = selectedOption.value;
+      }
+    });
+
+    // Validate agreement checkbox
+    const agreementContainer = document.getElementById('voteAgreement').closest('.form-group');
+    if (!agreement) {
+      const existingError = agreementContainer.querySelector('.selection-error');
+      if (existingError) existingError.remove();
+      
+      const errorDiv = document.createElement('div');
+      errorDiv.className = 'selection-error error-message';
+      errorDiv.style.cssText = `
+        color: #ff4444;
+        font-size: 0.8rem;
+        margin-top: 5px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        animation: slideInError 0.3s ease-out;
+      `;
+      errorDiv.innerHTML = `<i class="fas fa-exclamation-circle"></i> You must agree to the voting terms to continue`;
+      agreementContainer.appendChild(errorDiv);
+      hasErrors = true;
+    } else {
+      const existingError = agreementContainer.querySelector('.selection-error');
+      if (existingError) existingError.remove();
+    }
+
+    if (hasErrors) {
+      // Scroll to first error
+      const firstError = document.querySelector('.error-message');
+      if (firstError) {
+        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      return;
+    }
+
+    // Check for duplicate votes with better error handling
+    if (localStorage.getItem(`vote_${email}`)) {
+      showFieldError('voterEmail', 'This email has already been used to vote. Each email can only vote once.');
+      return;
+    }
+
+    // Store the vote (simulated)
+    localStorage.setItem(`vote_${email}`, JSON.stringify({
+      votes: votes,
+      timestamp: new Date().toISOString(),
+      userAgent: navigator.userAgent // Basic duplicate prevention
+    }));
+    
+    // Show success message
+    document.getElementById('voteForm').style.display = 'none';
+    document.getElementById('voteSuccess').style.display = 'block';
+  }
+
+  // Enhanced ticket order processing with comprehensive validation
+  function processTicketOrder() {
+    const name = document.getElementById('ticketName').value.trim();
+    const email = document.getElementById('ticketEmail').value.trim();
+    const phone = document.getElementById('ticketPhone').value.trim();
+    const generalQty = parseInt(document.getElementById('generalQty').value) || 0;
+    const vipQty = parseInt(document.getElementById('vipQty').value) || 0;
+    const studentQty = parseInt(document.getElementById('studentQty').value) || 0;
+
+    let hasErrors = false;
+
+    // Validate name with comprehensive checks
+    if (!name) {
+      showFieldError('ticketName', 'Full name is required');
+      hasErrors = true;
+    } else if (name.length < 2) {
+      showFieldError('ticketName', 'Name must be at least 2 characters long');
+      hasErrors = true;
+    } else if (name.length > 50) {
+      showFieldError('ticketName', 'Name cannot exceed 50 characters');
+      hasErrors = true;
+    } else if (!validateName(name)) {
+      showFieldError('ticketName', 'Name can only contain letters, spaces, hyphens, and apostrophes');
+      hasErrors = true;
+    } else if (!/\s/.test(name)) {
+      showFieldError('ticketName', 'Please enter your full name (first and last name)');
+      hasErrors = true;
+    } else {
+      clearFieldError('ticketName');
+      showFieldSuccess('ticketName');
+    }
+
+    // Validate email with detailed checks
+    if (!email) {
+      showFieldError('ticketEmail', 'Email address is required');
+      hasErrors = true;
+    } else if (email.length < 5) {
+      showFieldError('ticketEmail', 'Email address is too short');
+      hasErrors = true;
+    } else if (email.length > 254) {
+      showFieldError('ticketEmail', 'Email address is too long');
+      hasErrors = true;
+    } else if (!validateEmail(email)) {
+      showFieldError('ticketEmail', 'Please enter a valid email address (e.g., user@example.com)');
+      hasErrors = true;
+    } else if (email.includes('..')) {
+      showFieldError('ticketEmail', 'Email cannot contain consecutive dots');
+      hasErrors = true;
+    } else {
+      clearFieldError('ticketEmail');
+      showFieldSuccess('ticketEmail');
+    }
+
+    // Validate phone number with detailed checks
+    const cleanPhone = phone.replace(/\D/g, '');
+    if (!phone) {
+      showFieldError('ticketPhone', 'Phone number is required');
+      hasErrors = true;
+    } else if (cleanPhone.length === 0) {
+      showFieldError('ticketPhone', 'Phone number must contain digits');
+      hasErrors = true;
+    } else if (cleanPhone.length < 10) {
+      showFieldError('ticketPhone', 'Phone number must be at least 10 digits');
+      hasErrors = true;
+    } else if (cleanPhone.length > 15) {
+      showFieldError('ticketPhone', 'Phone number cannot exceed 15 digits');
+      hasErrors = true;
+    } else if (!validatePhone(phone)) {
+      showFieldError('ticketPhone', 'Please enter a valid 10-digit phone number');
+      hasErrors = true;
+    } else if (!/^[+\-\s\(\)\d]+$/.test(phone)) {
+      showFieldError('ticketPhone', 'Phone number contains invalid characters');
+      hasErrors = true;
+    } else {
+      clearFieldError('ticketPhone');
+      showFieldSuccess('ticketPhone');
+      // Format the phone number
+      document.getElementById('ticketPhone').value = formatPhoneNumber(cleanPhone);
+    }
+
+    // Validate ticket quantities with detailed checks
+    const totalTickets = generalQty + vipQty + studentQty;
+    const maxTicketsPerOrder = 10;
+
+    if (totalTickets === 0) {
+      // Create error message for ticket selection
+      const ticketContainer = document.querySelector('.ticket-option').parentNode;
+      const existingError = ticketContainer.querySelector('.ticket-error');
+      if (existingError) existingError.remove();
+      
+      const errorDiv = document.createElement('div');
+      errorDiv.className = 'ticket-error error-message';
+      errorDiv.style.cssText = `
+        color: #ff4444;
+        font-size: 0.9rem;
+        margin: 15px 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        animation: slideInError 0.3s ease-out;
+        background: rgba(255, 68, 68, 0.05);
+        padding: 12px 16px;
+        border-radius: 8px;
+        border-left: 4px solid #ff4444;
+      `;
+      errorDiv.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Please select at least one ticket to continue`;
+      ticketContainer.insertBefore(errorDiv, ticketContainer.firstChild);
+      hasErrors = true;
+    } else if (totalTickets > maxTicketsPerOrder) {
+      const ticketContainer = document.querySelector('.ticket-option').parentNode;
+      const existingError = ticketContainer.querySelector('.ticket-error');
+      if (existingError) existingError.remove();
+      
+      const errorDiv = document.createElement('div');
+      errorDiv.className = 'ticket-error error-message';
+      errorDiv.style.cssText = `
+        color: #ff4444;
+        font-size: 0.9rem;
+        margin: 15px 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        animation: slideInError 0.3s ease-out;
+        background: rgba(255, 68, 68, 0.05);
+        padding: 12px 16px;
+        border-radius: 8px;
+        border-left: 4px solid #ff4444;
+      `;
+      errorDiv.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Maximum ${maxTicketsPerOrder} tickets allowed per order. You selected ${totalTickets}.`;
+      ticketContainer.insertBefore(errorDiv, ticketContainer.firstChild);
+      hasErrors = true;
+    } else {
+      // Remove any existing ticket errors
+      const existingError = document.querySelector('.ticket-error');
+      if (existingError) existingError.remove();
+    }
+
+    // Validate individual ticket quantities
+    if (generalQty < 0 || vipQty < 0 || studentQty < 0) {
+      const ticketContainer = document.querySelector('.ticket-option').parentNode;
+      const existingError = ticketContainer.querySelector('.ticket-quantity-error');
+      if (existingError) existingError.remove();
+      
+      const errorDiv = document.createElement('div');
+      errorDiv.className = 'ticket-quantity-error error-message';
+      errorDiv.style.cssText = `
+        color: #ff4444;
+        font-size: 0.8rem;
+        margin-top: 5px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        animation: slideInError 0.3s ease-out;
+      `;
+      errorDiv.innerHTML = `<i class="fas fa-exclamation-circle"></i> Ticket quantities cannot be negative`;
+      ticketContainer.appendChild(errorDiv);
+      hasErrors = true;
+    }
+
+    if (hasErrors) {
+      // Scroll to first error
+      const firstError = document.querySelector('.error-message');
+      if (firstError) {
+        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      return;
+    }
+
+    // Calculate total with proper formatting
+    const total = (generalQty * 199) + (vipQty * 499) + (studentQty * 99);
+    
+    // Validate total amount
+    if (total <= 0) {
+      alert('Invalid order total. Please try again.');
+      return;
+    }
+
+    if (total > 10000) {
+      alert('Order total exceeds maximum allowed amount. Please contact support for large orders.');
+      return;
+    }
+    
+    // Store ticket data
+    const ticketData = {
+      name, 
+      email, 
+      phone: formatPhoneNumber(cleanPhone), 
+      generalQty, 
+      vipQty, 
+      studentQty, 
+      total: total
+    };
+    
+    storeTicketData(ticketData);
+    
+    // In a real app, you would process payment here
+    console.log('Order processed:', { 
+      ...ticketData,
+      total: `$${total.toLocaleString()}`,
+      timestamp: new Date().toISOString()
+    });
+    
+    // Show success with order summary
+    const successDiv = document.getElementById('ticketSuccess');
+    const orderSummary = `
+      <p><strong>Order Summary:</strong></p>
+      <ul style="text-align: left; margin: 10px 0; padding-left: 20px;">
+        ${generalQty > 0 ? `<li>General Admission: ${generalQty} × $199 = $${(generalQty * 199).toLocaleString()}</li>` : ''}
+        ${vipQty > 0 ? `<li>VIP Pass: ${vipQty} × $499 = $${(vipQty * 499).toLocaleString()}</li>` : ''}
+        ${studentQty > 0 ? `<li>Student Pass: ${studentQty} × $99 = $${(studentQty * 99).toLocaleString()}</li>` : ''}
+      </ul>
+      <p><strong>Total: $${total.toLocaleString()}</strong></p>
+    `;
+    
+    // Update success message with order details
+    const successContent = successDiv.innerHTML;
+    const updatedContent = successContent.replace(
+      'Thank you for your ticket purchase. A confirmation has been sent to your email.',
+      `Thank you for your ticket purchase, ${name.split(' ')[0]}! ${orderSummary} A confirmation has been sent to ${email}.`
+    );
+    successDiv.innerHTML = updatedContent;
+    
+    // Show success
+    document.getElementById('ticketForm').style.display = 'none';
+    document.getElementById('ticketSuccess').style.display = 'block';
+  }
+
+  // Real-time validation for form fields
+  function setupRealTimeValidation() {
+    // Email validation for voting form
+    const voterEmail = document.getElementById('voterEmail');
+    if (voterEmail) {
+      voterEmail.addEventListener('input', function() {
+        const email = this.value.trim();
+        if (email.length === 0) {
+          clearFieldError('voterEmail');
+          return;
+        }
+        
+        if (email.length < 5) {
+          showFieldError('voterEmail', 'Email too short');
+        } else if (email.length > 254) {
+          showFieldError('voterEmail', 'Email too long');
+        } else if (!validateEmail(email)) {
+          showFieldError('voterEmail', 'Invalid email format');
+        } else if (email.includes('..')) {
+          showFieldError('voterEmail', 'Cannot contain consecutive dots');
+        } else {
+          clearFieldError('voterEmail');
+          showFieldSuccess('voterEmail');
+        }
+      });
+
+      voterEmail.addEventListener('blur', function() {
+        const email = this.value.trim();
+        if (email && localStorage.getItem(`vote_${email}`)) {
+          showFieldError('voterEmail', 'This email has already voted');
+        }
+      });
+    }
+
+    // Name validation for ticket form
+    const ticketName = document.getElementById('ticketName');
+    if (ticketName) {
+      ticketName.addEventListener('input', function() {
+        const name = this.value.trim();
+        if (name.length === 0) {
+          clearFieldError('ticketName');
+          return;
+        }
+
+        if (name.length < 2) {
+          showFieldError('ticketName', 'Too short');
+        } else if (name.length > 50) {
+          showFieldError('ticketName', 'Too long (max 50 characters)');
+        } else if (!validateName(name)) {
+          showFieldError('ticketName', 'Only letters, spaces, hyphens allowed');
+        } else if (!/\s/.test(name)) {
+          showFieldError('ticketName', 'Enter full name (first and last)');
+        } else {
+          clearFieldError('ticketName');
+          showFieldSuccess('ticketName');
+        }
+
+        // Character counter
+        updateCharacterCount('ticketName', name.length, 50);
+      });
+    }
+
+    // Email validation for ticket form
+    const ticketEmail = document.getElementById('ticketEmail');
+    if (ticketEmail) {
+      ticketEmail.addEventListener('input', function() {
+        const email = this.value.trim();
+        if (email.length === 0) {
+          clearFieldError('ticketEmail');
+          return;
+        }
+
+        if (email.length < 5) {
+          showFieldError('ticketEmail', 'Email too short');
+        } else if (email.length > 254) {
+          showFieldError('ticketEmail', 'Email too long');
+        } else if (!validateEmail(email)) {
+          showFieldError('ticketEmail', 'Invalid email format');
+        } else if (email.includes('..')) {
+          showFieldError('ticketEmail', 'Cannot contain consecutive dots');
+        } else {
+          clearFieldError('ticketEmail');
+          showFieldSuccess('ticketEmail');
+        }
+
+        // Character counter
+        updateCharacterCount('ticketEmail', email.length, 254);
+      });
+    }
+
+    // Phone validation for ticket form
+    const ticketPhone = document.getElementById('ticketPhone');
+    if (ticketPhone) {
+      ticketPhone.addEventListener('input', function() {
+        let phone = this.value;
+        const cleanPhone = phone.replace(/\D/g, '');
+        
+        if (phone.length === 0) {
+          clearFieldError('ticketPhone');
+          return;
+        }
+
+        // Auto-format as user types
+        if (cleanPhone.length <= 10) {
+          if (cleanPhone.length >= 6) {
+            phone = `(${cleanPhone.slice(0,3)}) ${cleanPhone.slice(3,6)}-${cleanPhone.slice(6)}`;
+          } else if (cleanPhone.length >= 3) {
+            phone = `(${cleanPhone.slice(0,3)}) ${cleanPhone.slice(3)}`;
+          }
+          this.value = phone;
+        }
+
+        if (cleanPhone.length === 0) {
+          showFieldError('ticketPhone', 'Must contain digits');
+        } else if (cleanPhone.length < 10) {
+          showFieldError('ticketPhone', `Need ${10 - cleanPhone.length} more digits`);
+        } else if (cleanPhone.length > 15) {
+          showFieldError('ticketPhone', 'Too many digits');
+        } else if (!validatePhone(phone)) {
+          showFieldError('ticketPhone', 'Invalid phone format');
+        } else if (!/^[+\-\s\(\)\d]+$/.test(phone)) {
+          showFieldError('ticketPhone', 'Invalid characters');
+        } else {
+          clearFieldError('ticketPhone');
+          showFieldSuccess('ticketPhone');
+        }
+
+        // Character counter
+        updateCharacterCount('ticketPhone', cleanPhone.length, 10, 'digits');
+      });
+
+      // Prevent non-phone characters
+      ticketPhone.addEventListener('keypress', function(e) {
+        const allowedChars = /[0-9\+\-\s\(\)]/;
+        if (!allowedChars.test(e.key) && !['Backspace', 'Delete', 'Tab', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+          e.preventDefault();
+        }
+      });
+    }
+
+    // Ticket quantity validation
+    const ticketInputs = ['generalQty', 'vipQty', 'studentQty'];
+    ticketInputs.forEach(inputId => {
+      const input = document.getElementById(inputId);
+      if (input) {
+        input.addEventListener('change', function() {
+          const value = parseInt(this.value) || 0;
+          if (value < 0) {
+            this.value = 0;
+          } else if (value > 10) {
+            this.value = 10;
+            showFieldError(inputId, 'Maximum 10 tickets per type');
+          } else {
+            clearFieldError(inputId);
+          }
+
+          // Update total tickets validation
+          validateTotalTickets();
+        });
+
+        input.addEventListener('input', function() {
+          validateTotalTickets();
+        });
+      }
+    });
+
+    // Dynamic radio button validation
+    setupVotingValidationListeners();
+
+    // Checkbox validation
+    const voteAgreement = document.getElementById('voteAgreement');
+    if (voteAgreement) {
+      voteAgreement.addEventListener('change', function() {
+        const container = this.closest('.form-group');
+        const existingError = container.querySelector('.selection-error');
+        if (existingError) existingError.remove();
+      });
+    }
+  }
+
+  function updateCharacterCount(fieldId, current, max, unit = 'characters') {
+    const field = document.getElementById(fieldId);
+    const container = field.parentNode;
+    
+    // Remove existing counter
+    const existingCounter = container.querySelector('.character-count');
+    if (existingCounter) existingCounter.remove();
+    
+    // Add new counter
+    const counter = document.createElement('div');
+    counter.className = 'character-count';
+    
+    if (current > max) {
+      counter.classList.add('error');
+    } else if (current > max * 0.8) {
+      counter.classList.add('warning');
+    }
+    
+    counter.textContent = `${current}/${max} ${unit}`;
+    container.appendChild(counter);
+  }
+
+  function validateTotalTickets() {
+    const generalQty = parseInt(document.getElementById('generalQty').value) || 0;
+    const vipQty = parseInt(document.getElementById('vipQty').value) || 0;
+    const studentQty = parseInt(document.getElementById('studentQty').value) || 0;
+    const total = generalQty + vipQty + studentQty;
+    
+    // Remove existing ticket errors
+    const existingError = document.querySelector('.ticket-error');
+    if (existingError) existingError.remove();
+    
+    if (total > 10) {
+      const ticketContainer = document.querySelector('.ticket-option').parentNode;
+      const errorDiv = document.createElement('div');
+      errorDiv.className = 'ticket-error error-message';
+      errorDiv.style.cssText = `
+        color: #ff4444;
+        font-size: 0.8rem;
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        background: rgba(255, 68, 68, 0.05);
+        padding: 8px 12px;
+        border-radius: 6px;
+        border-left: 3px solid #ff4444;
+      `;
+      errorDiv.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Total tickets: ${total}/10 (maximum exceeded)`;
+      ticketContainer.insertBefore(errorDiv, ticketContainer.firstChild);
+    }
+  }
+
+  // Initialize animations on load
+  window.addEventListener('load', function() {
+    animateOnScroll();
+    setupRealTimeValidation();
+    generateVotingForm(); // Load dynamic categories on page load
+  });
+  
+  // Check for animations on scroll
+  window.addEventListener('scroll', animateOnScroll);
+
+  // Admin Panel Functions
+
+  function showAdminTab(tabName) {
+    // Hide all tabs
+    document.querySelectorAll('.admin-tab').forEach(tab => tab.classList.remove('active'));
+    document.querySelectorAll('.admin-tab-content').forEach(content => content.classList.remove('active'));
+    
+    // Show selected tab
+    document.querySelector(`button[onclick="showAdminTab('${tabName}')"]`).classList.add('active');
+    document.getElementById(`${tabName}Tab`).classList.add('active');
+    
+    if (tabName === 'votes') {
+      loadVotingData();
+    } else if (tabName === 'tickets') {
+      loadTicketData();
+    } else if (tabName === 'categories') {
+      loadCategoriesData();
+    } else if (tabName === 'settings') {
+      loadSettingsData();
+    }
+  }
+
+  function loadVotingData() {
+    const votesContainer = document.getElementById('votesData');
+    const votes = [];
+    
+    // Get all voting data from localStorage
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key.startsWith('vote_')) {
+        try {
+          const voteData = JSON.parse(localStorage.getItem(key));
+          const email = key.replace('vote_', '');
+          votes.push({
+            email: email,
+            keynoteSpeaker: voteData.keynoteSpeaker,
+            workshop: voteData.workshop,
+            timestamp: voteData.timestamp,
+            userAgent: voteData.userAgent
+          });
+        } catch (e) {
+          console.error('Error parsing vote data:', e);
+        }
+      }
+    }
+
+    document.getElementById('voteCount').textContent = votes.length;
+
+    if (votes.length === 0) {
+      votesContainer.innerHTML = `
+        <div class="empty-state">
+          <i class="fas fa-ballot-check"></i>
+          <h3>No votes yet</h3>
+          <p>Voting data will appear here once people start voting.</p>
+        </div>
+      `;
+      return;
+    }
+
+    // Sort by timestamp (newest first)
+    votes.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+    // Generate voting statistics
+    const categoryStats = {};
+    const categories = getVotingCategories();
+    
+    // Initialize stats for each category
+    categories.forEach(category => {
+      categoryStats[category.id] = {};
+    });
+    
+    votes.forEach(vote => {
+      if (vote.votes) {
+        // New format with dynamic categories
+        Object.entries(vote.votes).forEach(([categoryId, choice]) => {
+          if (!categoryStats[categoryId]) categoryStats[categoryId] = {};
+          categoryStats[categoryId][choice] = (categoryStats[categoryId][choice] || 0) + 1;
+        });
+      } else {
+        // Legacy format compatibility
+        if (vote.keynoteSpeaker) {
+          if (!categoryStats['keynoteSpeaker']) categoryStats['keynoteSpeaker'] = {};
+          categoryStats['keynoteSpeaker'][vote.keynoteSpeaker] = (categoryStats['keynoteSpeaker'][vote.keynoteSpeaker] || 0) + 1;
+        }
+        if (vote.workshop) {
+          if (!categoryStats['workshop']) categoryStats['workshop'] = {};
+          categoryStats['workshop'][vote.workshop] = (categoryStats['workshop'][vote.workshop] || 0) + 1;
+        }
+      }
+    });
+
+    let html = `
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h4>${votes.length}</h4>
+          <p>Total Votes</p>
+        </div>
+        <div class="stat-card">
+          <h4>${categories.length}</h4>
+          <p>Active Categories</p>
+        </div>
+        <div class="stat-card">
+          <h4>${Object.values(categoryStats).reduce((sum, stats) => sum + Object.keys(stats).length, 0)}</h4>
+          <p>Total Options</p>
+        </div>
+      </div>
+
+      <h4>Voting Results</h4>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 20px;">
+        ${categories.map(category => `
+          <div>
+            <h5 style="color: var(--primary);">${category.title}</h5>
+            ${Object.entries(categoryStats[category.id] || {})
+              .sort((a, b) => b[1] - a[1])
+              .map(([option, count]) => `
+                <div style="margin: 8px 0; padding: 8px; background: var(--glass-light); border-radius: 4px;">
+                  <strong>${option}</strong>: ${count} votes (${((count/votes.length)*100).toFixed(1)}%)
+                </div>
+              `).join('') || '<p style="color: var(--text-muted); font-style: italic;">No votes yet</p>'}
+          </div>
+        `).join('')}
+      </div>
+
+      <h4>Individual Votes</h4>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Email</th>
+            ${categories.map(cat => `<th>${cat.title}</th>`).join('')}
+            <th>Vote Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${votes.map(vote => `
+            <tr>
+              <td>${vote.email}</td>
+              ${categories.map(cat => {
+                let value = 'Not voted';
+                if (vote.votes && vote.votes[cat.id]) {
+                  value = vote.votes[cat.id];
+                } else if (cat.id === 'keynoteSpeaker' && vote.keynoteSpeaker) {
+                  value = vote.keynoteSpeaker;
+                } else if (cat.id === 'workshop' && vote.workshop) {
+                  value = vote.workshop;
+                }
+                return `<td>${value}</td>`;
+              }).join('')}
+              <td>${new Date(vote.timestamp).toLocaleString()}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    `;
+
+    votesContainer.innerHTML = html;
+  }
+
+  function loadTicketData() {
+    const ticketsContainer = document.getElementById('ticketsData');
+    const tickets = [];
+    
+    // Get all ticket data from localStorage
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key.startsWith('ticket_')) {
+        try {
+          const ticketData = JSON.parse(localStorage.getItem(key));
+          tickets.push(ticketData);
+        } catch (e) {
+          console.error('Error parsing ticket data:', e);
+        }
+      }
+    }
+
+    document.getElementById('ticketCount').textContent = tickets.length;
+
+    if (tickets.length === 0) {
+      ticketsContainer.innerHTML = `
+        <div class="empty-state">
+          <i class="fas fa-ticket-alt"></i>
+          <h3>No ticket orders yet</h3>
+          <p>Ticket booking data will appear here once people start purchasing tickets.</p>
+        </div>
+      `;
+      return;
+    }
+
+    // Sort by timestamp (newest first)
+    tickets.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+    // Generate statistics
+    const totalRevenue = tickets.reduce((sum, ticket) => sum + ticket.total, 0);
+    const totalTickets = tickets.reduce((sum, ticket) => 
+      sum + ticket.generalQty + ticket.vipQty + ticket.studentQty, 0);
+    
+    const ticketTypes = {
+      general: tickets.reduce((sum, ticket) => sum + ticket.generalQty, 0),
+      vip: tickets.reduce((sum, ticket) => sum + ticket.vipQty, 0),
+      student: tickets.reduce((sum, ticket) => sum + ticket.studentQty, 0)
+    };
+
+    let html = `
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h4>${tickets.length}</h4>
+          <p>Total Orders</p>
+        </div>
+        <div class="stat-card">
+          <h4>${totalTickets}</h4>
+          <p>Tickets Sold</p>
+        </div>
+        <div class="stat-card">
+          <h4>$${totalRevenue.toLocaleString()}</h4>
+          <p>Total Revenue</p>
+        </div>
+        <div class="stat-card">
+          <h4>$${Math.round(totalRevenue/tickets.length).toLocaleString()}</h4>
+          <p>Avg Order Value</p>
+        </div>
+      </div>
+
+      <h4>Ticket Sales Breakdown</h4>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px;">
+        <div class="stat-card">
+          <h4>${ticketTypes.general}</h4>
+          <p>General Admission<br>$${(ticketTypes.general * 199).toLocaleString()} revenue</p>
+        </div>
+        <div class="stat-card">
+          <h4>${ticketTypes.vip}</h4>
+          <p>VIP Pass<br>$${(ticketTypes.vip * 499).toLocaleString()} revenue</p>
+        </div>
+        <div class="stat-card">
+          <h4>${ticketTypes.student}</h4>
+          <p>Student Pass<br>$${(ticketTypes.student * 99).toLocaleString()} revenue</p>
+        </div>
+      </div>
+
+      <h4>Order Details</h4>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>General</th>
+            <th>VIP</th>
+            <th>Student</th>
+            <th>Total</th>
+            <th>Order Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${tickets.map(ticket => `
+            <tr>
+              <td>${ticket.name}</td>
+              <td>${ticket.email}</td>
+              <td>${ticket.phone}</td>
+              <td>${ticket.generalQty}</td>
+              <td>${ticket.vipQty}</td>
+              <td>${ticket.studentQty}</td>
+              <td>$${ticket.total.toLocaleString()}</td>
+              <td>${new Date(ticket.timestamp).toLocaleString()}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    `;
+
+    ticketsContainer.innerHTML = html;
+  }
+
+  function exportData() {
+    const allData = {
+      votes: [],
+      tickets: [],
+      exportTime: new Date().toISOString()
+    };
+
+    // Collect voting data
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key.startsWith('vote_')) {
+        try {
+          const voteData = JSON.parse(localStorage.getItem(key));
+          allData.votes.push({
+            email: key.replace('vote_', ''),
+            ...voteData
+          });
+        } catch (e) {
+          console.error('Error parsing vote data:', e);
+        }
+      } else if (key.startsWith('ticket_')) {
+        try {
+          const ticketData = JSON.parse(localStorage.getItem(key));
+          allData.tickets.push(ticketData);
+        } catch (e) {
+          console.error('Error parsing ticket data:', e);
+        }
+      }
+    }
+
+    // Create and download file
+    const dataStr = JSON.stringify(allData, null, 2);
+    const dataBlob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(dataBlob);
+    
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `ance-data-${new Date().toISOString().split('T')[0]}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    alert(`Data exported successfully!\nVotes: ${allData.votes.length}\nTicket Orders: ${allData.tickets.length}`);
+  }
+
+  function clearAllData() {
+    if (confirm('Are you sure you want to clear ALL voting and ticket data? This action cannot be undone!')) {
+      if (confirm('This will permanently delete all stored data. Are you absolutely sure?')) {
+        const keysToDelete = [];
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i);
+          if (key.startsWith('vote_') || key.startsWith('ticket_')) {
+            keysToDelete.push(key);
+          }
+        }
+        
+        keysToDelete.forEach(key => localStorage.removeItem(key));
+        
+        alert(`Cleared ${keysToDelete.length} records successfully.`);
+        
+        // Refresh the current tab
+        if (document.getElementById('votesTab').classList.contains('active')) {
+          loadVotingData();
+        } else {
+          loadTicketData();
+        }
+      }
+    }
+  }
+
+  // Store ticket data when order is processed
+  function storeTicketData(ticketData) {
+    const ticketId = 'ticket_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    localStorage.setItem(ticketId, JSON.stringify({
+      ...ticketData,
+      timestamp: new Date().toISOString(),
+      orderId: ticketId.replace('ticket_', '')
+    }));
+  }
+
+  // Category Management Functions
+  function loadCategoriesData() {
+    const categoriesContainer = document.getElementById('categoriesData');
+    const categories = getVotingCategories();
+    
+    let html = `
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h4>${categories.length}</h4>
+          <p>Active Categories</p>
+        </div>
+        <div class="stat-card">
+          <h4>${categories.reduce((sum, cat) => sum + cat.options.length, 0)}</h4>
+          <p>Total Options</p>
+        </div>
+      </div>
+      <h4>Current Voting Categories</h4>
+    `;
+
+    categories.forEach((category, index) => {
+      html += `
+        <div class="category-editor" id="category-${index}">
+          <div class="category-header">
+            <input type="text" class="category-title-input" value="${category.title}" 
+                   onchange="updateCategoryTitle(${index}, this.value)" placeholder="Category Title">
+            <div class="category-actions">
+              <button class="btn-small btn-success" onclick="saveCategoryChanges(${index})">Save</button>
+              <button class="btn-small btn-danger" onclick="deleteCategory(${index})">Delete</button>
+            </div>
+          </div>
+          <div class="options-list">
+            ${category.options.map((option, optIndex) => `
+              <div class="option-item">
+                <input type="text" class="option-input" value="${option}" 
+                       onchange="updateCategoryOption(${index}, ${optIndex}, this.value)" placeholder="Option text">
+                <button onclick="deleteOption(${index}, ${optIndex})">Remove</button>
+              </div>
+            `).join('')}
+          </div>
+          <button class="add-option-btn" onclick="addOption(${index})">Add Option</button>
+        </div>
+      `;
+    });
+
+    categoriesContainer.innerHTML = html;
+  }
+
+  function getVotingCategories() {
+    const stored = localStorage.getItem('voting_categories');
+    if (stored) {
+      return JSON.parse(stored);
+    }
+    
+    // Default categories
+    return [
+      {
+        id: 'keynoteSpeaker',
+        title: 'Best Keynote Speaker',
+        options: ['Dr. Priya Sharma', 'Raj Patel', 'Lisa Chen', 'David Kim']
+      },
+      {
+        id: 'workshop',
+        title: 'Most Valuable Workshop',
+        options: ['Digital Transformation', 'Leadership in Tech', 'Startup Funding', 'Networking Strategies']
+      }
+    ];
+  }
+
+  function saveVotingCategories(categories) {
+    localStorage.setItem('voting_categories', JSON.stringify(categories));
+  }
+
+  function addNewCategory() {
+    const categories = getVotingCategories();
+    const newCategory = {
+      id: 'category_' + Date.now(),
+      title: 'New Category',
+      options: ['Option 1', 'Option 2']
+    };
+    categories.push(newCategory);
+    saveVotingCategories(categories);
+    loadCategoriesData();
+  }
+
+  function updateCategoryTitle(index, newTitle) {
+    const categories = getVotingCategories();
+    if (categories[index]) {
+      categories[index].title = newTitle;
+      saveVotingCategories(categories);
+    }
+  }
+
+  function updateCategoryOption(categoryIndex, optionIndex, newValue) {
+    const categories = getVotingCategories();
+    if (categories[categoryIndex] && categories[categoryIndex].options[optionIndex] !== undefined) {
+      categories[categoryIndex].options[optionIndex] = newValue;
+      saveVotingCategories(categories);
+    }
+  }
+
+  function deleteCategory(index) {
+    if (confirm('Are you sure you want to delete this category? This will affect the voting form.')) {
+      const categories = getVotingCategories();
+      categories.splice(index, 1);
+      saveVotingCategories(categories);
+      loadCategoriesData();
+    }
+  }
+
+  function deleteOption(categoryIndex, optionIndex) {
+    const categories = getVotingCategories();
+    if (categories[categoryIndex]) {
+      categories[categoryIndex].options.splice(optionIndex, 1);
+      saveVotingCategories(categories);
+      loadCategoriesData();
+    }
+  }
+
+  function addOption(categoryIndex) {
+    const categories = getVotingCategories();
+    if (categories[categoryIndex]) {
+      categories[categoryIndex].options.push('New Option');
+      saveVotingCategories(categories);
+      loadCategoriesData();
+    }
+  }
+
+  function saveCategoryChanges(index) {
+    // Categories are auto-saved on change, this is just user feedback
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--secondary);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      z-index: 1000;
+      animation: slideInError 0.3s ease-out;
+    `;
+    notification.textContent = 'Category saved successfully!';
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+      if (notification.parentNode) {
+        notification.remove();
+      }
+    }, 2000);
+  }
+
+  function updateVotingForm() {
+    if (confirm('This will update the voting form with your current categories. Existing votes will not be affected. Continue?')) {
+      generateVotingForm();
+      
+      // Show detailed feedback
+      const categories = getVotingCategories();
+      const totalOptions = categories.reduce((sum, cat) => sum + cat.options.length, 0);
+      
+      const notification = document.createElement('div');
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--secondary);
+        color: white;
+        padding: 15px 25px;
+        border-radius: 8px;
+        z-index: 1000;
+        animation: slideInError 0.3s ease-out;
+        box-shadow: var(--shadow-lg);
+        max-width: 300px;
+      `;
+      notification.innerHTML = `
+        <strong>✅ Voting Form Updated!</strong><br>
+        <small>
+          • ${categories.length} categories loaded<br>
+          • ${totalOptions} total options<br>
+          • Users will see changes immediately
+        </small>
+      `;
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        if (notification.parentNode) {
+          notification.remove();
+        }
+      }, 5000);
+      
+      // Also refresh the voting modal if it's open
+      const votingModal = document.getElementById('votingModal');
+      if (votingModal.style.display === 'flex') {
+        // Close and reopen to refresh
+        closeModal('votingModal');
+        setTimeout(() => openModal('votingModal'), 100);
+      }
+    }
+  }
+
+  function generateVotingForm() {
+    const categories = getVotingCategories();
+    const voteFormContainer = document.querySelector('#voteForm');
+    
+    if (!voteFormContainer) {
+      console.error('Vote form container not found');
+      return;
+    }
+    
+    // Remove existing categories (keep email field and agreement)
+    const existingCategories = voteFormContainer.querySelectorAll('.vote-category');
+    existingCategories.forEach(cat => cat.remove());
+    
+    // Find the email field and agreement section
+    const emailField = voteFormContainer.querySelector('.form-group:first-child');
+    const agreementSection = voteFormContainer.querySelector('#voteAgreementSection');
+    
+    // Add new categories between email and agreement
+    categories.forEach(category => {
+      const categoryDiv = document.createElement('div');
+      categoryDiv.className = 'vote-category';
+      categoryDiv.innerHTML = `
+        <div class="category-title">${category.title}</div>
+        <div class="vote-options">
+          ${category.options.map(option => `
+            <label class="radio-option">
+              <input type="radio" name="${category.id}" value="${option}">
+              <label>${option}</label>
+            </label>
+          `).join('')}
+        </div>
+      `;
+      voteFormContainer.insertBefore(categoryDiv, agreementSection);
+    });
+    
+    // Re-setup validation listeners for new categories
+    setupVotingValidationListeners();
+  }
+
+  function setupVotingValidationListeners() {
+    const categories = getVotingCategories();
+    
+    // Radio button validation for all categories
+    categories.forEach(category => {
+      const radios = document.querySelectorAll(`input[name="${category.id}"]`);
+      radios.forEach(radio => {
+        radio.addEventListener('change', function() {
+          const container = this.closest('.vote-category');
+          const existingError = container.querySelector('.selection-error');
+          if (existingError) existingError.remove();
+        });
+      });
+    });
+  }
+
+  // Cloud Sync Functions (Simulated)
+  function loadSettingsData() {
+    updateCloudStats();
+    
+    // Load voting deadline
+    const deadline = localStorage.getItem('voting_deadline');
+    if (deadline) {
+      document.getElementById('votingDeadline').value = deadline;
+    }
+  }
+
+  function updateCloudStats() {
+    // Simulate cloud database stats
+    const allVotes = [];
+    const allTickets = [];
+    
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key.startsWith('vote_')) allVotes.push(key);
+      if (key.startsWith('ticket_')) allTickets.push(key);
+    }
+    
+    document.getElementById('totalVotesDb').textContent = allVotes.length;
+    document.getElementById('totalTicketsDb').textContent = allTickets.length;
+    
+    const lastSync = localStorage.getItem('last_sync_time');
+    document.getElementById('lastSyncTime').textContent = lastSync ? 
+      new Date(lastSync).toLocaleString() : 'Never';
+  }
+
+  function syncToCloud() {
+    const syncButton = document.querySelector('button[onclick="syncToCloud()"]');
+    const originalText = syncButton.textContent;
+    syncButton.textContent = 'Syncing...';
+    syncButton.disabled = true;
+    
+    // Simulate API call delay
+    setTimeout(() => {
+      // Collect all data
+      const allData = {
+        votes: [],
+        tickets: [],
+        categories: getVotingCategories(),
+        settings: {
+          eventName: document.getElementById('eventName').value,
+          eventDate: document.getElementById('eventDate').value,
+          votingDeadline: document.getElementById('votingDeadline').value
+        },
+        syncTime: new Date().toISOString()
+      };
+      
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.startsWith('vote_')) {
+          allData.votes.push({
+            key: key,
+            data: JSON.parse(localStorage.getItem(key))
+          });
+        } else if (key.startsWith('ticket_')) {
+          allData.tickets.push({
+            key: key,
+            data: JSON.parse(localStorage.getItem(key))
+          });
+        }
+      }
+      
+      // Store in "cloud" (using a special localStorage key)
+      localStorage.setItem('cloud_backup', JSON.stringify(allData));
+      localStorage.setItem('last_sync_time', allData.syncTime);
+      
+      syncButton.textContent = originalText;
+      syncButton.disabled = false;
+      
+      document.getElementById('syncStatus').innerHTML = `
+        <span style="color: var(--secondary);">✓ Successfully synced ${allData.votes.length} votes and ${allData.tickets.length} tickets to cloud</span>
+      `;
+      
+      updateCloudStats();
+    }, 2000);
+  }
+
+  function loadFromCloud() {
+    const cloudData = localStorage.getItem('cloud_backup');
+    if (!cloudData) {
+      document.getElementById('syncStatus').innerHTML = `
+        <span style="color: #ff4444;">✗ No cloud backup found</span>
+      `;
+      return;
+    }
+    
+    if (!confirm('This will replace all local data with cloud data. Are you sure?')) {
+      return;
+    }
+    
+    const loadButton = document.querySelector('button[onclick="loadFromCloud()"]');
+    const originalText = loadButton.textContent;
+    loadButton.textContent = 'Loading...';
+    loadButton.disabled = true;
+    
+    setTimeout(() => {
+      try {
+        const data = JSON.parse(cloudData);
+        
+        // Clear existing data
+        const keysToDelete = [];
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i);
+          if (key.startsWith('vote_') || key.startsWith('ticket_')) {
+            keysToDelete.push(key);
+          }
+        }
+        keysToDelete.forEach(key => localStorage.removeItem(key));
+        
+        // Load cloud data
+        data.votes.forEach(vote => {
+          localStorage.setItem(vote.key, JSON.stringify(vote.data));
+        });
+        
+        data.tickets.forEach(ticket => {
+          localStorage.setItem(ticket.key, JSON.stringify(ticket.data));
+        });
+        
+        // Load categories and settings
+        if (data.categories) {
+          saveVotingCategories(data.categories);
+        }
+        
+        if (data.settings) {
+          document.getElementById('eventName').value = data.settings.eventName || '';
+          document.getElementById('eventDate').value = data.settings.eventDate || '';
+          document.getElementById('votingDeadline').value = data.settings.votingDeadline || '';
+        }
+        
+        loadButton.textContent = originalText;
+        loadButton.disabled = false;
+        
+        document.getElementById('syncStatus').innerHTML = `
+          <span style="color: var(--secondary);">✓ Successfully loaded ${data.votes.length} votes and ${data.tickets.length} tickets from cloud</span>
+        `;
+        
+        updateCloudStats();
+        
+        // Refresh current tabs
+        if (document.getElementById('votesTab').classList.contains('active')) {
+          loadVotingData();
+        } else if (document.getElementById('ticketsTab').classList.contains('active')) {
+          loadTicketData();
+        }
+        
+      } catch (e) {
+        document.getElementById('syncStatus').innerHTML = `
+          <span style="color: #ff4444;">✗ Error loading cloud data: ${e.message}</span>
+        `;
+        
+        loadButton.textContent = originalText;
+        loadButton.disabled = false;
+      }
+    }, 1500);
+  }
+
+  function saveEventSettings() {
+    const settings = {
+      eventName: document.getElementById('eventName').value,
+      eventDate: document.getElementById('eventDate').value,
+      votingDeadline: document.getElementById('votingDeadline').value
+    };
+    
+    localStorage.setItem('event_settings', JSON.stringify(settings));
+    localStorage.setItem('voting_deadline', settings.votingDeadline);
+    
+    // Update the hero section with new event details
+    if (settings.eventName) {
+      document.querySelector('.hero-content h1').innerHTML = 
+        settings.eventName.includes('span') ? settings.eventName : 
+        `${settings.eventName.split(' ').slice(0, 2).join(' ')} <span>${settings.eventName.split(' ').slice(2).join(' ')}</span>`;
+    }
+    
+    if (settings.eventDate) {
+      const heroP = document.querySelector('.hero-content p');
+      heroP.innerHTML = heroP.innerHTML.replace(/October 1-2, 2025/, settings.eventDate);
+    }
+    
+    alert('Event settings saved successfully!');
+  }
+
+  // Admin access functionality
+  let adminKeySequence = '';
+  const adminCode = 'admin123';
+  let adminCodeTimeout;
+
+  function enableAdminAccess() {
+    document.getElementById('adminAccess').style.display = 'block';
+    
+    // Show notification
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--secondary);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 8px;
+      z-index: 1000;
+      animation: slideInError 0.3s ease-out;
+      box-shadow: var(--shadow-lg);
+      font-weight: 600;
+    `;
+    notification.innerHTML = '🔧 Admin access enabled!<br><small>Click the admin link in navigation</small>';
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+      if (notification.parentNode) {
+        notification.remove();
+      }
+    }, 5000);
+    
+    console.log('Admin access granted!');
+  }
+
+  // Multiple ways to access admin panel
+  document.addEventListener('keypress', function(e) {
+    // Skip if typing in form fields
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+      return;
+    }
+    
+    const char = e.key.toLowerCase();
+    adminKeySequence += char;
+    
+    // Keep only the last 8 characters
+    if (adminKeySequence.length > 8) {
+      adminKeySequence = adminKeySequence.slice(-8);
+    }
+    
+    // Clear sequence after 3 seconds of inactivity
+    clearTimeout(adminCodeTimeout);
+    adminCodeTimeout = setTimeout(() => {
+      adminKeySequence = '';
+    }, 3000);
+    
+    // Check if sequence matches admin code
+    if (adminKeySequence.includes(adminCode)) {
+      enableAdminAccess();
+      adminKeySequence = '';
+    }
+    
+    console.log('Current sequence:', adminKeySequence); // Debug log
+  });
+
+  // Alternative access methods
+  document.addEventListener('dblclick', function(e) {
+    // Double-click on logo to enable admin
+    if (e.target.classList.contains('nav-logo') || e.target.classList.contains('logo')) {
+      enableAdminAccess();
+    }
+  });
+
+  // Keyboard navigation improvements
+  document.addEventListener('keydown', function(e) {
+    
+    // Close modals with Escape key
+    if (e.key === 'Escape') {
+      const openModal = document.querySelector('.modal[style*="display: flex"]');
+      if (openModal) {
+        closeModal(openModal.id);
+      }
+    }
+    
+    // Toggle mobile menu with spacebar when focused
+    if (e.key === ' ' && e.target === navToggle) {
+      e.preventDefault();
+      navToggle.click();
+    }
+  });
+</script>
+
+</body>
+</html>
